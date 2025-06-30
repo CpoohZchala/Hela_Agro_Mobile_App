@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -71,14 +72,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       );
 
       if (response.statusCode == 200) {
-        setState(() => _responseMessage = '✅ Password updated successfully!');
+        setState(() => _responseMessage = 'password_updated_success'.tr());
       } else {
         final errorData = json.decode(response.body);
         setState(() =>
-            _responseMessage = '❌ ${errorData['message'] ?? 'Update failed'}');
+            _responseMessage = '❌ ${errorData['message'] ?? 'update_failed'.tr()}');
       }
     } catch (error) {
-      setState(() => _responseMessage = '❗ Error: $error');
+      setState(() => _responseMessage = '❗ error: $error'.tr());
     } finally {
       setState(() => _isLoading = false);
     }
@@ -94,7 +95,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(87, 164, 91, 0.8),
         title: Text(
-          "Password Change ",
+          'password_change'.tr(),
           style: GoogleFonts.poppins(
               color: Colors.black, fontWeight: FontWeight.bold),
         ),
@@ -124,7 +125,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       controller: _currentPasswordController,
                       obscureText: !_showCurrentPassword,
                       decoration: InputDecoration(
-                        labelText: 'Current Password',
+                        labelText: 'current_password'.tr(),
                         labelStyle: labelStyle,
                         filled: true,
                         fillColor: Colors.white,
@@ -153,7 +154,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       ),
                       style: inputStyle,
                       validator: (value) => value == null || value.isEmpty
-                          ? 'Enter current password'
+                          ? 'enter_current_password'.tr()
                           : null,
                     ),
 
@@ -164,7 +165,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       controller: _newPasswordController,
                       obscureText: !_showNewPassword,
                       decoration: InputDecoration(
-                        labelText: 'New Password',
+                        labelText: 'new_password'.tr(),
                         labelStyle: labelStyle,
                         filled: true,
                         fillColor: Colors.white,
@@ -193,7 +194,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       ),
                       style: inputStyle,
                       validator: (value) => value == null || value.length < 6
-                          ? 'Minimum 6 characters'
+                          ? 'minimum_6_characters'.tr()
                           : null,
                     ),
 
@@ -204,7 +205,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       controller: _confirmPasswordController,
                       obscureText: !_showConfirmPassword,
                       decoration: InputDecoration(
-                        labelText: 'Confirm Password',
+                        labelText: 'confirm_your_password'.tr(),
                         labelStyle: labelStyle,
                         filled: true,
                         fillColor: Colors.white,
@@ -233,7 +234,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       ),
                       style: inputStyle,
                       validator: (value) => value == null || value.isEmpty
-                          ? 'Confirm your password'
+                          ? 'confirm_your_password'.tr()
                           : null,
                     ),
 
@@ -246,7 +247,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             icon: const Icon(Icons.lock_reset,
                                 color: Colors.white),
                             label: Text(
-                              'Change Password',
+                              'change_password'.tr(),
                               style: GoogleFonts.poppins(color: Colors.white),
                             ),
                             style: ElevatedButton.styleFrom(

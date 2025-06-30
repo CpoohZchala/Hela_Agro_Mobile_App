@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'dart:convert';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -12,30 +13,30 @@ Future<void> showDeleteProfileDialog(
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text(
-          'Confirm Delete Account',
+          'confirm_delete_account'.tr(),
           style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
         ),
         content: Text(
-          'Are you sure you want to delete your account?',
+          'are_you_sure_delete'.tr(),
           style: GoogleFonts.poppins(),
         ),
         actions: <Widget>[
           TextButton(
-            child: Text('No', style: GoogleFonts.poppins(color: Colors.green)),
+            child: Text('no'.tr(), style: GoogleFonts.poppins(color: Colors.green)),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
           TextButton(
-            child: Text('Yes', style: GoogleFonts.poppins(color: Colors.red)),
+            child: Text('yes'.tr(), style: GoogleFonts.poppins(color: Colors.red)),
             onPressed: () async {
               try {
                 Navigator.of(context).pop();
                 await deleteUserProfile(context, userId); // Then delete
               } catch (e) {
-                print("Error in delete profile dialog: $e");
+                print('failed_delete_profile: $e'.tr());
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("Error: ${e.toString()}")),
+                  SnackBar(content: Text('error: ${e.toString()}'.tr())),
                 );
               }
             },
@@ -50,7 +51,7 @@ Future<void> deleteUserProfile(BuildContext context, String userId) async {
   try {
     // Show a loading message while deleting
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Deleting profile, please wait...")),
+       SnackBar(content: Text('profile_deleted_success'.tr())),
     );
 
     // Fetch user type dynamically
@@ -75,19 +76,19 @@ Future<void> deleteUserProfile(BuildContext context, String userId) async {
 
     if (response.statusCode == 200) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Profile deleted successfully")),
+        SnackBar(content: Text('profile_deleted_success'.tr())),
       );
       Navigator.pushReplacementNamed(context, "/signIn");
     } else {
       print("Failed to delete profile: ${response.body}");
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Failed to delete profile")),
+         SnackBar(content: Text('failed_delete_profile'.tr())),
       );
     }
   } catch (e) {
-    print("Error during profile deletion: $e");
+    print('failed_delete_profile: $e');
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Error: ${e.toString()}")),
+      SnackBar(content: Text('error: ${e.toString()}')),
     );
   }
 }

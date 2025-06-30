@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:farmeragriapp/screens/views/farmer/cropCalender.dart';
 import 'package:farmeragriapp/screens/views/farmer/notifications.dart';
 import 'package:farmeragriapp/screens/views/farmer/profile.dart';
@@ -61,19 +62,19 @@ class _FarmerDashboardState extends State<FarmerDashboard> {
           color: Colors.yellow,
           activeColor: Colors.white,
           tabBackgroundColor: Colors.white.withOpacity(0.2),
-          gap: 10,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          gap: 4,
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
           iconSize: 30,
           onTabChange: (index) {
             setState(() {
               _selectedIndex = index;
             });
           },
-          tabs: const [
-            GButton(icon: Icons.home, text: "Home"),
-            GButton(icon: Icons.notifications, text: "Test"),
-            GButton(icon: Icons.calendar_month, text: "Calendar"),
-            GButton(icon: Icons.account_circle, text: "Profile"),
+          tabs:  [
+            GButton(icon: Icons.home, text: "home".tr()),
+            GButton(icon: Icons.notifications, text: "test".tr()),
+            GButton(icon: Icons.calendar_month, text: "calendar".tr()),
+            GButton(icon: Icons.account_circle, text: "profile".tr()),
           ],
         ),
       ),
@@ -94,15 +95,15 @@ class FarmerHome extends StatelessWidget {
     final hour = DateTime.now().hour;
     String greeting;
     if (hour < 12) {
-      greeting = "Good Morning";
+      greeting = "good_morning".tr();
     } else if (hour < 18) {
-      greeting = "Good Afternoon";
+      greeting = "good_afternoon".tr();
     } else {
-      greeting = "Good Night";
+      greeting = "good_night".tr();
     }
 
-    const String userName = " User";
-
+    String userName = "user".tr();
+    
     return Scaffold(
       backgroundColor: const Color(0xFFF6F8FA),
       body: Stack(
@@ -137,7 +138,7 @@ class FarmerHome extends StatelessWidget {
                         const SizedBox(height: 25),
                         const SizedBox(height: 10),
                         Text(
-                          "Hi$userName,",
+                          "Hi $userName,",
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
@@ -169,17 +170,17 @@ class FarmerHome extends StatelessWidget {
                   crossAxisCount: gridCrossAxisCount,
                   childAspectRatio: gridChildAspectRatio,
                   children: <Widget>[
-                    _modernGridButton(context, "Cultivational Details",
+                    _modernGridButton(context, 'cultivational_details'.tr(),
                         Icons.agriculture, "/cultivational", gridFontSize),
-                    _modernGridButton(context, "Crop Updates", Icons.eco,
+                    _modernGridButton(context, 'crop_updates'.tr(), Icons.eco,
                         "/crop_updates", gridFontSize),
-                    _modernGridButton(context, "Cultivational Expenses",
+                    _modernGridButton(context, 'cultivational_expenses'.tr(),
                         Icons.attach_money, "/expenses", gridFontSize),
-                    _modernGridButton(context, "Stock Details",
+                    _modernGridButton(context, 'stock_details'.tr(),
                         Icons.store_mall_directory, "/stock", gridFontSize),
-                    _modernGridButton(context, "Order Details", Icons.book,
+                    _modernGridButton(context, 'order_details'.tr(), Icons.book,
                         "/orders", gridFontSize),
-                    _modernGridButton(context, "Inquiries", Icons.forum,
+                    _modernGridButton(context, 'inquiries'.tr(), Icons.forum,
                         "/technical", gridFontSize),
                   ],
                 ),

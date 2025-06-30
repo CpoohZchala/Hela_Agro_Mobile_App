@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:farmeragriapp/api/cultivation_api.dart';
 import 'package:farmeragriapp/data/cultivation_data.dart';
 import 'package:farmeragriapp/models/cultivation_model.dart';
@@ -129,9 +130,8 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
   Future<void> _submitData() async {
     if (!_validateForm()) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-              "Please fill all required fields (and select Crop Yield Size)"),
+        SnackBar(
+          content: Text('please_fill_required'.tr()),
         ),
       );
       return;
@@ -149,8 +149,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
         district: _selectedDistrict!,
         city: _selectedCity!,
         nic: nicController.text,
-        cropYieldSize:
-            _parseAcreToNum(_selectedYieldSize),
+        cropYieldSize: _parseAcreToNum(_selectedYieldSize),
         id: widget.existingData?['_id'],
       );
 
@@ -201,7 +200,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                   left: 50,
                   right: 0,
                   child: Text(
-                    "Edit Your Details",
+                    'edit_your_details'.tr(),
                     style: GoogleFonts.poppins(
                       color: Colors.black,
                       fontSize: 20,
@@ -225,8 +224,8 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                   child: Center(
                     child: Text(
                       widget.existingData != null
-                          ? "Edit Cultivation"
-                          : "Add Cultivation",
+                          ? 'edit_cultivation'.tr()
+                          : 'add_cultivation'.tr(),
                       style: GoogleFonts.poppins(
                         color: Colors.white,
                         fontSize: 22,
@@ -241,11 +240,11 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  _buildTextField("Member ID", memberIdController,
+                  _buildTextField('member_id'.tr(), memberIdController,
                       enabled: false),
                   const SizedBox(height: 16),
                   _buildDropdown(
-                      "Select Category*", cropCategories.keys.toList(), (val) {
+                      'select_category'.tr(), cropCategories.keys.toList(), (val) {
                     setState(() {
                       _selectedCategory = val;
                       _selectedCrop = null;
@@ -253,7 +252,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                   }, value: _selectedCategory),
                   const SizedBox(height: 16),
                   _buildDropdown(
-                    "Select Crop*",
+                    'select_crop'.tr(),
                     _selectedCategory != null
                         ? cropCategories[_selectedCategory]!
                         : [],
@@ -265,7 +264,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                   TextField(
                     controller: _dateController,
                     decoration: InputDecoration(
-                      labelText: "Start Date*",
+                      labelText: 'start_date'.tr(),
                       suffixIcon: IconButton(
                         icon: const Icon(Icons.calendar_month),
                         onPressed: _pickDate,
@@ -278,7 +277,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                   ),
                   const SizedBox(height: 16),
                   _buildDropdown(
-                    "Select District*",
+                    'select_district'.tr(),
                     districtCities.keys.toList(),
                     (val) => setState(() {
                       _selectedDistrict = val;
@@ -288,7 +287,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                   ),
                   const SizedBox(height: 16),
                   _buildDropdown(
-                    "Select City*",
+                    'select_city'.tr(),
                     _selectedDistrict != null
                         ? districtCities[_selectedDistrict]!
                         : [],
@@ -297,13 +296,13 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                     enabled: _selectedDistrict != null,
                   ),
                   const SizedBox(height: 16),
-                  _buildTextField("Location Address*", addressController),
+                  _buildTextField('location_address'.tr(), addressController),
                   const SizedBox(height: 16),
-                  _buildTextField("NIC*", nicController),
+                  _buildTextField('nic'.tr(), nicController),
                   const SizedBox(height: 16),
                   DropdownButtonFormField<String>(
                     decoration: InputDecoration(
-                      labelText: "Crop Yield Size*",
+                      labelText: 'crop_yield_size'.tr(),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -318,7 +317,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                       );
                     }).toList(),
                     validator: (value) =>
-                        value == null ? 'This field is required' : null,
+                        value == null ? 'required_field_error'.tr() : null,
                   ),
                   const SizedBox(height: 24),
                   SizedBox(
@@ -335,7 +334,9 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                       child: _isSubmitting
                           ? const CircularProgressIndicator(color: Colors.white)
                           : Text(
-                              widget.existingData != null ? "UPDATE" : "SUBMIT",
+                              widget.existingData != null
+                                  ? 'update'.tr()
+                                  : 'submit'.tr(),
                               style: GoogleFonts.poppins(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -348,13 +349,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                 ],
               ),
             ),
-            Text(
-              "Crop Yield Size: ${widget.existingData != null ? (widget.existingData['cropYieldSize'] as num).toStringAsFixed(2) : 'N/A'} Acre",
-              style: GoogleFonts.poppins(
-                fontSize: 14,
-                color: Colors.black87,
-              ),
-            ),
+           
           ],
         ),
       ),

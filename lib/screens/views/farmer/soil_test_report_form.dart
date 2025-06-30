@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -57,7 +58,7 @@ class _SoilTestReportFormScreenState extends State<SoilTestReportFormScreen> {
     final farmerId = await _storage.read(key: "userId");
     if (farmerId == null) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("User not logged in")));
+          .showSnackBar( SnackBar(content: Text("user_not_logged_in".tr())));
       setState(() => _isSubmitting = false);
       return;
     }
@@ -81,8 +82,8 @@ class _SoilTestReportFormScreenState extends State<SoilTestReportFormScreen> {
     if (success) {
       if (mounted) Navigator.pop(context, true);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Failed to submit report.'),
+      ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+          content: Text('failed_submit_report'.tr()),
           backgroundColor: Colors.red));
     }
   }
@@ -126,8 +127,8 @@ class _SoilTestReportFormScreenState extends State<SoilTestReportFormScreen> {
                     : 24,
             child: Text(
               widget.initialReport == null
-                  ? 'Submit Soil Test Report'
-                  : 'Edit Soil Test Report',
+                  ? 'submit_soil_test_report'.tr()
+                  : 'edit_soil_test_report'.tr(),
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.bold,
                 fontSize: headerFontSize,
@@ -197,28 +198,28 @@ class _SoilTestReportFormScreenState extends State<SoilTestReportFormScreen> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        buildTextField(_phController, 'Soil pH', 'e.g. 6.5',
+                        buildTextField(_phController, 'soil_ph'.tr(), 'e.g. 6.5',
                             Icons.science),
                         const SizedBox(height: 16),
-                        buildTextField(_nitrogenController, 'Nitrogen (N)',
+                        buildTextField(_nitrogenController, 'nitrogen'.tr(),
                             'e.g. 20 mg/kg', Icons.eco),
                         const SizedBox(height: 16),
-                        buildTextField(_phosphorusController, 'Phosphorus (P)',
+                        buildTextField(_phosphorusController, 'phosphorus'.tr(),
                             'e.g. 15 mg/kg', Icons.local_florist),
                         const SizedBox(height: 16),
-                        buildTextField(_potassiumController, 'Potassium (K)',
+                        buildTextField(_potassiumController, 'potassium'.tr(),
                             'e.g. 30 mg/kg', Icons.grass),
                         const SizedBox(height: 16),
                         buildTextField(
                             _micronutrientsController,
-                            'Micronutrients',
+                            'micronutrients'.tr(),
                             'e.g. Zinc, Iron, Boron',
                             Icons.bubble_chart),
                         const SizedBox(height: 16),
                         DropdownButtonFormField<String>(
                           value: _soilTexture,
                           decoration: InputDecoration(
-                            labelText: 'Soil Texture',
+                            labelText: 'soil_texture'.tr(),
                             prefixIcon: const Icon(Icons.terrain,
                                 color: Color(0xFF57A45B)),
                             border: OutlineInputBorder(
@@ -226,18 +227,18 @@ class _SoilTestReportFormScreenState extends State<SoilTestReportFormScreen> {
                             filled: true,
                             fillColor: Colors.white,
                           ),
-                          items: const [
+                          items:  [
                             DropdownMenuItem(
-                                value: 'Sandy', child: Text('Sandy')),
+                                value: 'Sandy', child: Text('sandy'.tr())),
                             DropdownMenuItem(
-                                value: 'Clay', child: Text('Clay')),
+                                value: 'Clay', child: Text('clay'.tr())),
                             DropdownMenuItem(
-                                value: 'Loam', child: Text('Loam')),
+                                value: 'Loam', child: Text('loam'.tr())),
                           ],
                           onChanged: (value) =>
                               setState(() => _soilTexture = value),
                           validator: (value) => value == null || value.isEmpty
-                              ? 'Please select soil texture'
+                              ? 'soil_texture'.tr()
                               : null,
                         ),
                         const SizedBox(height: 24),
@@ -256,8 +257,8 @@ class _SoilTestReportFormScreenState extends State<SoilTestReportFormScreen> {
                                     color: Colors.white)
                                 : Text(
                                     widget.initialReport == null
-                                        ? 'Submit Report'
-                                        : 'Update Report',
+                                        ? 'submit_report'.tr()
+                                        : 'update_report'.tr(),
                                     style: const TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
@@ -295,7 +296,7 @@ class _SoilTestReportFormScreenState extends State<SoilTestReportFormScreen> {
         fillColor: Colors.white,
       ),
       validator: (value) =>
-          value == null || value.isEmpty ? 'Please enter $label' : null,
+          value == null || value.isEmpty ? 'please_enter. $label'.tr() : null,
     );
   }
 }

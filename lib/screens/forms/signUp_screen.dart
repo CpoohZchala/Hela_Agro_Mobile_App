@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:farmeragriapp/api/auth_api.dart';
 import 'package:farmeragriapp/models/user_model.dart';
 import 'package:farmeragriapp/screens/dialogBox/success_dialog.dart';
@@ -170,7 +171,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                             const SizedBox(height: 10),
                             Text(
-                              "Sign-Up",
+                              "sign_up".tr(),
                               style: GoogleFonts.poppins(
                                 fontSize: headerFontSize,
                                 fontWeight: FontWeight.bold,
@@ -183,7 +184,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               child: DropdownButtonFormField<String>(
                                 value: _selectedCategory,
                                 decoration: InputDecoration(
-                                  labelText: "Sign-up Category",
+                                  labelText: "signup_category".tr(),
                                   labelStyle: GoogleFonts.poppins(
                                       fontSize: 15, color: Colors.black),
                                   filled: true,
@@ -215,14 +216,14 @@ class _SignupScreenState extends State<SignupScreen> {
                                 },
                               ),
                             ),
-                            _buildTextField(nameController, "Full Name",
+                            _buildTextField(nameController, "full_name".tr(),
                                 isDesktop, isTablet),
-                            _buildTextField(mobileController, "Mobile Number",
+                            _buildTextField(mobileController, "mobile_number".tr(),
                                 isDesktop, isTablet),
-                            _buildPasswordField(passwordController, "Password",
+                            _buildPasswordField(passwordController, "password".tr(),
                                 isDesktop, isTablet),
                             _buildPasswordField(confirmPasswordController,
-                                "Confirm Password", isDesktop, isTablet),
+                                "confirm_password".tr(), isDesktop, isTablet),
                             const SizedBox(height: 24),
                             SizedBox(
                               width: double.infinity,
@@ -239,7 +240,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 ),
                                 onPressed: signUp,
                                 child: Text(
-                                  "Sign Up",
+                                  "sign_up_button".tr(),
                                   style: GoogleFonts.poppins(
                                     fontSize: buttonFontSize,
                                     fontWeight: FontWeight.bold,
@@ -251,11 +252,11 @@ class _SignupScreenState extends State<SignupScreen> {
                             const SizedBox(height: 16),
                             RichText(
                               text: TextSpan(
-                                text: "Do you have an account? ",
+                                text: "have_account".tr(),
                                 style: GoogleFonts.poppins(color: Colors.black),
                                 children: [
                                   TextSpan(
-                                    text: "Sign-In",
+                                    text: "sign_in".tr(),
                                     style: GoogleFonts.poppins(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,

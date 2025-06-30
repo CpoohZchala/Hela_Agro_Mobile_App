@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CropCalenderScreen extends StatefulWidget {
   const CropCalenderScreen({super.key});
@@ -23,38 +24,48 @@ class _CropCalenderScreenState extends State<CropCalenderScreen> {
             child: Container(
               height: 190,
               color: const Color.fromRGBO(87, 164, 91, 0.8),
-             
             ),
           ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: TableCalendar(
-                firstDay: DateTime.utc(2000, 1, 1),
-                lastDay: DateTime.utc(2100, 12, 31),
-                focusedDay: _focusedDay,
-                selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-                onDaySelected: (selectedDay, focusedDay) {
-                  setState(() {
-                    _selectedDay = selectedDay;
-                    _focusedDay = focusedDay;
-                  });
-                },
-                calendarStyle: const CalendarStyle(
-                  todayDecoration: BoxDecoration(
-                    color: Colors.green,
-                    shape: BoxShape.circle,
+              child: Column(
+                children: [
+                 
+                  Expanded(
+                    child: TableCalendar(
+                      daysOfWeekHeight: 50,   //create more space below the weekday text.
+                      locale: context.locale.toString(), // 🔑 Locale added here!
+                      firstDay: DateTime.utc(2000, 1, 1),
+                      lastDay: DateTime.utc(2100, 12, 31),
+                      focusedDay: _focusedDay,
+                      selectedDayPredicate: (day) =>
+                          isSameDay(_selectedDay, day),
+                      onDaySelected: (selectedDay, focusedDay) {
+                        setState(() {
+                          _selectedDay = selectedDay;
+                          _focusedDay = focusedDay;
+                        });
+                      },
+                      calendarStyle: const CalendarStyle(
+                        todayDecoration: BoxDecoration(
+                          color: Colors.green,
+                          shape: BoxShape.circle,
+                        ),
+                        selectedDecoration: BoxDecoration(
+                          color: Color.fromRGBO(9, 9, 9, 0.8),
+                          shape: BoxShape.circle,
+                        ),
+                        weekendTextStyle: TextStyle(color: Colors.red),
+                      ),
+                      
+                      headerStyle: const HeaderStyle(
+                        formatButtonVisible: false,
+                        titleCentered: true,
+                      ),
+                    ),
                   ),
-                  selectedDecoration: BoxDecoration(
-                    color: Color.fromRGBO(87, 164, 91, 0.8),
-                    shape: BoxShape.circle,
-                  ),
-                  weekendTextStyle: TextStyle(color: Colors.red),
-                ),
-                headerStyle: const HeaderStyle(
-                  formatButtonVisible: false,
-                  titleCentered: true,
-                ),
+                ],
               ),
             ),
           ),

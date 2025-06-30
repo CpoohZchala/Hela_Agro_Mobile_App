@@ -1,3 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+
+// Screens and Forms
 import 'package:farmeragriapp/screens/forms/farmer/add_expense.dart';
 import 'package:farmeragriapp/screens/forms/farmer/commiunityIScreen.dart';
 import 'package:farmeragriapp/screens/forms/farmer/financialIScreen.dart';
@@ -14,7 +18,6 @@ import 'package:farmeragriapp/screens/views/farmer/cultivation_screen.dart';
 import 'package:farmeragriapp/screens/forms/farmer/addCultivational.dart';
 import 'package:farmeragriapp/screens/views/farmer/inquiries_screen.dart';
 import 'package:farmeragriapp/screens/forms/farmer/newUpdateForm.dart';
-// import 'package:farmeragriapp/screens/views/orders_screen.dart';
 import 'package:farmeragriapp/screens/views/farmer/predictionscreen.dart';
 import 'package:farmeragriapp/screens/forms/signIn_screen.dart';
 import 'package:farmeragriapp/screens/forms/signUp_screen.dart';
@@ -23,21 +26,37 @@ import 'package:farmeragriapp/screens/views/marketingOfficer/add_soilReport.dart
 import 'package:farmeragriapp/screens/views/marketingOfficer/manageFarmersScreen.dart';
 import 'package:farmeragriapp/screens/views/marketingOfficer/officerDashboard.dart';
 import 'package:farmeragriapp/screens/views/marketingOfficer/officer_profile.dart';
-// import 'package:farmeragriapp/screens/views/stock_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:farmeragriapp/screens/views/buyer/buyer_profile.dart';
+import 'package:flutter/services.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+   // Suppress MirrorManager warning
+  SystemChannels.skia.invokeMethod('Skia.setAllowOpenGL', true);
+  await EasyLocalization.ensureInitialized();
+
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'),Locale('si'),Locale('ta'),],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      startLocale: const Locale('en'),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.green),
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       initialRoute: "/",
       routes: {
         "/": (context) => const SplashScreen(),
@@ -46,8 +65,6 @@ class MyApp extends StatelessWidget {
         "/cultivational": (context) => const CultivationalScreen(),
         "/crop_updates": (context) => const CropDetailsScreen(),
         "/expenses": (context) => const CultivationalExpense(),
-        // "/stock": (context) => const StockScreen(),
-        // "/orders": (context) => const Orderscreen(),
         "/inqueries": (context) => const InqueriesScreen(),
         "/prediction": (context) => const Predictionscreen(),
         "/addCultivational": (context) => const CultivationalAddScreen(),

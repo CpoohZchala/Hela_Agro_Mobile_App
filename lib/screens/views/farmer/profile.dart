@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:farmeragriapp/screens/dialogBox/deleteProfile_dialog.dart';
 import 'package:farmeragriapp/screens/dialogBox/logout_dialog.dart';
 import 'package:farmeragriapp/screens/forms/farmer/changePassword.dart';
@@ -23,8 +24,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String userName = "Loading...";
-  String role = "Loading...";
+  String userName = 'loading'.tr();
+  String role = 'loading'.tr();
   String profileImage = "";
   File? _imageFile;
   final ImagePicker _picker = ImagePicker();
@@ -49,8 +50,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       if (response.statusCode == 404) {
         setState(() {
-          userName = "User not found";
-          role = "Unknown";
+          userName = 'user_not_found'.tr();
+          role = 'unknown'.tr();
         });
         return;
       }
@@ -62,8 +63,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       final data = jsonDecode(response.body);
       setState(() {
-        userName = data['fullName'] ?? "No Name";
-        role = data['userType'] ?? "Unknown";
+        userName = data['fullName'] ?? 'no_name'.tr();
+        role = data['userType'] ?? 'unknown'.tr();
         profileImage = data['profileImage'] ?? "";
       });
       print(
@@ -72,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       print("Error fetching profile: $e");
       setState(() {
         userName = "Error loading profile";
-        role = "Unknown";
+        role = "unknown".tr();
       });
     }
   }
@@ -108,16 +109,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
         await fetchUserProfile();
         setState(() => _imageFile = null);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Profile image updated")),
+           SnackBar(content: Text('profile_image_updated'.tr())),
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Failed to update image")),
+           SnackBar(content: Text('failed_update_image'.tr())),
         );
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Something went wrong")),
+         SnackBar(content: Text('something_went_wrong'.tr())),
       );
     }
   }
@@ -130,12 +131,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     if (response.statusCode == 200) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Profile deleted successfully")),
+       SnackBar(content: Text('profile_deleted_success'.tr())),
       );
       Navigator.pushReplacementNamed(context, "/signIn");
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Failed to delete profile")),
+         SnackBar(content: Text('failed_delete_profile'.tr())),
       );
     }
   }
@@ -227,7 +228,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   _buildProfileOption(
                     icon: Icons.edit,
-                    title: "Edit Profile",
+                    title: 'edit_profile'.tr(),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -241,7 +242,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const Divider(thickness: 1, color: Colors.grey),
                   _buildProfileOption(
                     icon: Icons.delete,
-                    title: "Delete Profile",
+                    title: 'delete_profile'.tr(),
                     onTap: () {
                       showDeleteProfileDialog(context, widget.userId);
                     },
@@ -249,7 +250,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const Divider(thickness: 1, color: Colors.grey),
                   _buildProfileOption(
                     icon: Icons.lock,
-                    title: "Change Password",
+                    title: 'change_password'.tr(),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -265,7 +266,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const Divider(thickness: 1, color: Colors.grey),
                   _buildProfileOption(
                     icon: Icons.logout,
-                    title: "Logout",
+                    title:'logout'.tr(),
                     onTap: () {
                       showLogOutDialog(context, widget.userId);
                     },

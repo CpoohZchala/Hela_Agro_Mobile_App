@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:farmeragriapp/screens/forms/farmer/addCultivational.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -135,7 +136,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 40),
                   child: Text(
-                    "Cultivation Details",
+                    'cultivation_details'.tr(),
                     style: GoogleFonts.poppins(
                       color: Colors.white,
                       fontSize: 20,
@@ -158,7 +159,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "No cultivation data available",
+                                'no_data'.tr(),
                                 style: GoogleFonts.poppins(
                                   fontSize: 16,
                                 ),
@@ -184,7 +185,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                   child: Align(
                                     alignment: Alignment.center,
                                     child: Text(
-                                      "වගා භූමියට දින ගණන: $days",
+                                      "${"days_remaining".tr()} $days",
                                       style: GoogleFonts.poppins(
                                         fontSize: 20,
                                         color: Colors.yellow[700],
@@ -194,7 +195,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                   ),
                                 );
                               }).toList(),
-                              const SizedBox(height: 10),
+                              const SizedBox(height: 12),
                               ..._data.map((cultivation) {
                                 final id = cultivation['_id'];
                                 final memberId =
@@ -219,7 +220,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
 
                                 return Card(
                                   margin: const EdgeInsets.symmetric(
-                                      horizontal: 15, vertical: 8),
+                                      horizontal: 17, vertical: 10),
                                   elevation: 3,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12),
@@ -239,18 +240,19 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              "Member ID: $memberId",
+                                              "${"member_id".tr()}:$memberId",
                                               style: GoogleFonts.poppins(
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: 13,
-                                                color: Colors.black87,
+                                                fontSize: 12,
+                                                color: const Color.fromARGB(
+                                                    221, 12, 28, 1),
                                               ),
                                             ),
                                           ],
                                         ),
                                         const SizedBox(height: 10),
                                         Text(
-                                          "Category: $cropCategory",
+                                          "${"category".tr()}: $cropCategory",
                                           style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             color: Colors.black87,
@@ -258,7 +260,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                         ),
                                         const SizedBox(height: 8),
                                         Text(
-                                          "Crop: $cropName",
+                                          "${"crop".tr()}: $cropName",
                                           style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             color: Colors.black87,
@@ -266,7 +268,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                         ),
                                         const SizedBox(height: 8),
                                         Text(
-                                          "Location: $district, $city",
+                                          "${'location'.tr()}: $district, $city",
                                           style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             color: Colors.black87,
@@ -274,7 +276,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                         ),
                                         const SizedBox(height: 8),
                                         Text(
-                                          "Start Date: $startDate",
+                                          "${"start_date".tr()}: $startDate",
                                           style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             color: Colors.black87,
@@ -282,7 +284,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                         ),
                                         const SizedBox(height: 8),
                                         Text(
-                                          "NIC: $nic",
+                                          "${"nic".tr()}: $nic",
                                           style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             color: Colors.black87,
@@ -290,7 +292,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                         ),
                                         const SizedBox(height: 8),
                                         Text(
-                                          "Crop Yield Size: අක්කර $cropYieldSize",
+                                          "${"crop_yield_size".tr()}: $cropYieldSize ${"acres".tr()}",
                                           style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             color: Colors.black87,
@@ -311,7 +313,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                                   builder: (context) =>
                                                       AlertDialog(
                                                     title: Text(
-                                                        "Confirm Delete",
+                                                        'confirm_delete'.tr(),
                                                         style:
                                                             GoogleFonts.poppins(
                                                                 color: Colors
@@ -320,7 +322,8 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                                                     FontWeight
                                                                         .bold)),
                                                     content: Text(
-                                                        "Are you sure you want to delete this cultivation?",
+                                                        'confirm_delete_msg'
+                                                            .tr(),
                                                         style:
                                                             GoogleFonts.poppins(
                                                                 color: Colors
@@ -330,7 +333,8 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                                         onPressed: () =>
                                                             Navigator.pop(
                                                                 context),
-                                                        child: Text("Cancel",
+                                                        child: Text(
+                                                            'cancel'.tr(),
                                                             style: GoogleFonts
                                                                 .poppins(
                                                                     color: const Color
@@ -347,7 +351,8 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                                           _deleteCultivation(
                                                               id);
                                                         },
-                                                        child: Text("Delete",
+                                                        child: Text(
+                                                            'delete'.tr(),
                                                             style: GoogleFonts
                                                                 .poppins(
                                                                     color: Colors
