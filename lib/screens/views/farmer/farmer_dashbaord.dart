@@ -53,7 +53,10 @@ class _FarmerDashboardState extends State<FarmerDashboard> {
           color: Color.fromRGBO(1, 45, 9, 0.8),
           borderRadius: BorderRadius.vertical(top: Radius.circular(0)),
           boxShadow: [
-            BoxShadow(color: Color.fromARGB(66, 6, 131, 1), blurRadius: 9, spreadRadius: 3),
+            BoxShadow(
+                color: Color.fromARGB(66, 6, 131, 1),
+                blurRadius: 9,
+                spreadRadius: 3),
           ],
         ),
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -70,11 +73,11 @@ class _FarmerDashboardState extends State<FarmerDashboard> {
               _selectedIndex = index;
             });
           },
-          tabs:  [
-            GButton(icon: Icons.home, text: "home".tr()),
-            GButton(icon: Icons.notifications, text: "test".tr()),
-            GButton(icon: Icons.calendar_month, text: "calendar".tr()),
-            GButton(icon: Icons.account_circle, text: "profile".tr()),
+          tabs: const [
+            GButton(icon: Icons.home, text: "Home"),
+            GButton(icon: Icons.notifications, text: "Test"),
+            GButton(icon: Icons.calendar_month, text: "Calendar"),
+            GButton(icon: Icons.account_circle, text: "Profile"),
           ],
         ),
       ),
@@ -95,15 +98,15 @@ class FarmerHome extends StatelessWidget {
     final hour = DateTime.now().hour;
     String greeting;
     if (hour < 12) {
-      greeting = "good_morning".tr();
+      greeting = "Good Morning";
     } else if (hour < 18) {
-      greeting = "good_afternoon".tr();
+      greeting = "Good Afternoon";
     } else {
-      greeting = "good_night".tr();
+      greeting = "Good Night";
     }
 
-    String userName = "user".tr();
-    
+    String userName = "User";
+
     return Scaffold(
       backgroundColor: const Color(0xFFF6F8FA),
       body: Stack(
@@ -170,18 +173,16 @@ class FarmerHome extends StatelessWidget {
                   crossAxisCount: gridCrossAxisCount,
                   childAspectRatio: gridChildAspectRatio,
                   children: <Widget>[
-                    _modernGridButton(context, 'cultivational_details'.tr(),
+                    _modernGridButton(context, 'Cultivational Details',
                         Icons.agriculture, "/cultivational", gridFontSize),
-                    _modernGridButton(context, 'crop_updates'.tr(), Icons.eco,
+                    _modernGridButton(context, 'Crop Updates', Icons.eco,
                         "/crop_updates", gridFontSize),
-                    _modernGridButton(context, 'cultivational_expenses'.tr(),
+                    _modernGridButton(context, 'Cultivational Expenses',
                         Icons.attach_money, "/expenses", gridFontSize),
-                    _modernGridButton(context, 'stock_details'.tr(),
+                    _modernGridButton(context, 'Stock Details',
                         Icons.store_mall_directory, "/stock", gridFontSize),
-                    _modernGridButton(context, 'order_details'.tr(), Icons.book,
-                        "/orders", gridFontSize),
-                    _modernGridButton(context, 'inquiries'.tr(), Icons.forum,
-                        "/technical", gridFontSize),
+                    // _modernGridButton(context, 'Inquiries', Icons.forum,
+                    //     "/technical", gridFontSize),
                   ],
                 ),
               ),

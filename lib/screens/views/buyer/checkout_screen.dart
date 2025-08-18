@@ -21,6 +21,27 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   final OrderService _orderService =
       OrderService('https://dearoagro-backend.onrender.com/api');
 
+  void _showPopup(String title, String message,
+      {Color backgroundColor = Colors.white, Color textColor = Colors.black87}) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: backgroundColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: Text(title,
+            style: GoogleFonts.poppins(
+                fontWeight: FontWeight.bold, color: textColor)),
+        content: Text(message, style: GoogleFonts.poppins(color: textColor)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('OK', style: GoogleFonts.poppins(color: textColor)),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +56,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Shipping Address
               Text(
                 'Shipping Address',
                 style: GoogleFonts.poppins(
@@ -51,18 +73,19 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(14),
-                                  borderSide: const BorderSide(
-                                    color: Color.fromRGBO(87, 164, 91, 0.8),
-                                    width: 2,
-                                  ),
-                                ),
+                    borderRadius: BorderRadius.circular(14),
+                    borderSide: const BorderSide(
+                      color: Color.fromRGBO(87, 164, 91, 0.8),
+                      width: 2,
+                    ),
+                  ),
                   hintText: 'Enter your shipping address',
                   filled: true,
                   fillColor: Colors.grey[200],
                 ),
               ),
               const SizedBox(height: 24),
+              // Payment Method
               Text(
                 'Payment Method',
                 style: GoogleFonts.poppins(
@@ -95,11 +118,21 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   onChanged: (value) {
                     setState(() {
                       _selectedPaymentMethod = value!;
+                      // Show popup if Credit Card or PayPal is selected
+                      if (_selectedPaymentMethod != 'COD') {
+                        _showPopup(
+                          'Info',
+                          'For Credit Card or online payments, please contact the company.\nCall us on 074 390 8274',
+                          backgroundColor: Colors.yellow[800]!,
+                          textColor: Colors.black,
+                        );
+                      }
                     });
                   },
                 ),
               ),
               const SizedBox(height: 32),
+              // Place Order Button
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -133,6 +166,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         const SnackBar(
                             content: Text('Order placed successfully')),
                       );
+                      widget.onCheckout(shippingAddress, _selectedPaymentMethod);
                     } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Failed to place order: $e')),

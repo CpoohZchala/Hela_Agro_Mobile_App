@@ -25,8 +25,7 @@ class _TechnicalIScreenState extends State<TechnicalIScreen> {
   final TextEditingController _imageController = TextEditingController();
   final TextEditingController _documentController = TextEditingController();
   final String _baseUrl = "https://dearoagro-backend.onrender.com/api";
-  final String _farmerId =
-      "12345"; // Replace with actual farmer ID from user session or state
+  final String _farmerId ="12345"; 
   bool _isLoading = false;
 
   Future<void> _pickDate() async {
@@ -105,7 +104,7 @@ class _TechnicalIScreenState extends State<TechnicalIScreen> {
             ..fields['title'] = _titleController.text
             ..fields['description'] = _descriptionController.text
             ..fields['date'] = _dateController.text
-            ..fields['farmerId'] = _farmerId; // Include farmer ID
+            ..fields['farmerId'] = _farmerId;
 
       if (_selectedImage != null && await _selectedImage!.exists()) {
         request.files.add(

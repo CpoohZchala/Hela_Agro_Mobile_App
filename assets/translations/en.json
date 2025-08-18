@@ -13,9 +13,9 @@
   "have_account": "Do you have an account?",
   "sign_up_here": "Sign-Up",
   "sign_in_here": "Sign-In",
-  "farmer":"Farmer",
-  "marketing_officer":"Marketing Officer",
-  "buyer":"Buyer",
+  "farmer": "Farmer",
+  "marketing_officer": "Marketing Officer",
+  "buyer": "Buyer",
   "hi_user": "Hi User",
   "cultivational_details": "Cultivational Details",
   "crop_updates": "Crop Updates",
@@ -24,13 +24,13 @@
   "order_details": "Order Details",
   "inquiries": "Inquiries",
   "home": "Home",
-  "test":"Test",
-  "calendar":"Calendar",
-  "profile":"Profile",
-  "good_morning":"Good Morning",
-  "good_afternoon":"Good Afternoon",
-  "good_night":"Good Night",
-  "user":"User",
+  "test": "Test",
+  "calendar": "Calendar",
+  "profile": "Profile",
+  "good_morning": "Good Morning",
+  "good_afternoon": "Good Afternoon",
+  "good_night": "Good Night",
+  "user": "User",
   "edit_profile": "Edit Profile",
   "delete_profile": "Delete Profile",
   "change_password": "Change Password",
@@ -45,7 +45,7 @@
   "unknown": "Unknown",
   "error_loading_profile": "Error loading profile",
   "no_name": "No Name",
-  
+
   "submit_soil_test_report": "Submit Soil Test Report",
   "edit_soil_test_report": "Edit Soil Test Report",
   "soil_ph": "Soil pH",
@@ -69,16 +69,12 @@
   "user_not_logged_in": "User not logged in",
   "failed_submit_report": "Failed to submit report.",
 
-
   "welcome_title": "Welcome!",
   "sign_in_success": "You have successfully signed in.",
   "redirect_farmer_dashboard": "Redirecting to Farmer Dashboard...",
 
-
   "crop_calendar": "Crop Calendar",
   "select_date_info": "Select a date to see crop details.",
-
-
 
   "enter_full_name": "Enter full name",
   "user_type": "User Type",
@@ -90,13 +86,11 @@
   "error": "❗ Error: {{error}}",
   "fill_at_least_one": "Please fill at least one field.",
 
-
   "confirm_delete_account": "Confirm Delete Account",
   "are_you_sure_delete": "Are you sure you want to delete your account?",
   "no": "No",
   "yes": "Yes",
   "deleting_profile_wait": "Deleting profile, please wait...",
-
 
   "password_change": "Password Change",
   "current_password": "Current Password",
@@ -107,12 +101,10 @@
   "new_and_confirm_mismatch": "New password and confirm password do not match.",
   "password_updated_success": "✅ Password updated successfully!",
 
-
   "confirm_logout": "Confirm Logout",
   "are_you_sure_logout": "Are you sure you want to logout?",
   "cancel": "Cancel",
   "logged_out_success": "Logged out successfully",
-
 
   "cultivation_details": "Cultivation Details",
   "days_remaining": "Days remaining for cultivation:",
@@ -142,7 +134,6 @@
   "please_fill_required": "Please fill all required fields (and select Crop Yield Size)",
   "crop_yield_size_text": "Crop Yield Size: {} Acre",
 
-
   "new_update_form": {
     "new_crop_update": "New Crop Update",
     "edit_crop_update": "Edit Crop Update",
@@ -162,35 +153,33 @@
     "submit": "Submit",
     "update": "Update",
     "days_since_planting": "Days since planting: ",
-    
-    "crop_update_options": [
-      "Land Preparation",
-      "Seed Selection and Nursery",
-      "Transplanting (Planting)",
-      "Fertilizer Application",
-      "Irrigation (Watering)",
-      "Weeding and Pest Control",
-      "Growth Monitoring",
-      "Yield Estimation",
-      "Harvesting",
-      "Harvest Storage",
-      "Harvest Distribution"
-    ],
-    
-    "fertilizer_type_options": [
-      "Organic Fertilizer",
-      "Chemical Fertilizer",
-      "Mixed or Compound Fertilizer"
-    ],
-    
-    "fertilizer_units": [
-      "Kg",
-      "g",
-      "l",
-      "ml"
-    ]
-  }
 
+    "crop_updates": {
+      "soil_preparation": "Land Preparation",
+      "seed_selection_and_nursery": "Seed Selection and Nursery",
+      "transplanting": "Transplanting (Planting)",
+      "fertilizing": "Fertilizer Application",
+      "watering": "Irrigation (Watering)",
+      "weeding_and_control": "Weeding and Pest Control",
+      "growth_monitoring": "Growth Monitoring",
+      "yield_estimation": "Yield Estimation",
+      "harvesting": "Harvesting",
+      "storage": "Harvest Storage",
+      "distribution": "Harvest Distribution"
+    },
 
+    "fertilizer_types": {
+      "organic":"Organic Fertilizer",
+      "chemical":"Chemical Fertilizer",
+      "mixed":"Mixed or Compound Fertilizer"
+    },
+
+    "units": ["Kg", "g", "l", "ml"]
+  },
+
+  "no_updates": "No crop updates available",
+  "planting_days": "Days since transplanting: {days}",
+  "fertilizer_type": "Fertilizer Type: {{type}}",
+  "fertilizer_amount": "Fertilizer Amount: {{amount}} {{unit}}",
+  "delete_message": "Are you sure you want to delete this crop update?"
 }
-

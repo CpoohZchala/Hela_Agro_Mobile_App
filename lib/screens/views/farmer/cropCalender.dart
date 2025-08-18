@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class CropCalenderScreen extends StatefulWidget {
   const CropCalenderScreen({super.key});
@@ -31,11 +30,11 @@ class _CropCalenderScreenState extends State<CropCalenderScreen> {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                 
                   Expanded(
                     child: TableCalendar(
-                      daysOfWeekHeight: 50,   //create more space below the weekday text.
-                      locale: context.locale.toString(), // 🔑 Locale added here!
+                      daysOfWeekHeight:
+                          50, 
+                      locale: 'en_US',
                       firstDay: DateTime.utc(2000, 1, 1),
                       lastDay: DateTime.utc(2100, 12, 31),
                       focusedDay: _focusedDay,
@@ -58,7 +57,6 @@ class _CropCalenderScreenState extends State<CropCalenderScreen> {
                         ),
                         weekendTextStyle: TextStyle(color: Colors.red),
                       ),
-                      
                       headerStyle: const HeaderStyle(
                         formatButtonVisible: false,
                         titleCentered: true,

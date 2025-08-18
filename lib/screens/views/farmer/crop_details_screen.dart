@@ -17,7 +17,6 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
   final _storage = const FlutterSecureStorage();
   List<dynamic> _cropUpdates = [];
   bool _isLoading = true;
-  // ignore: unused_field
   String? _errorMessage;
 
   @override
@@ -94,9 +93,9 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Find the first update with description "රෝපණය (වගා කිරීම)"
+    // Find the first update with description key for transplanting
     final firstPlanting = _cropUpdates.firstWhere(
-      (u) => u['description'] == "රෝපණය (වගා කිරීම)",
+      (u) => u['description'] == "Transplanting",
       orElse: () => null,
     );
     final plantingDays = firstPlanting != null
@@ -129,7 +128,7 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 40),
                   child: Text(
-                    "Crop Updates",
+                    'Crop Updates',
                     style: GoogleFonts.poppins(
                       color: Colors.white,
                       fontSize: 20,
@@ -145,9 +144,9 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
-                "පැළ වලට දින ගණන: $plantingDays",
+                'Days since planting: $plantingDays',
                 style: GoogleFonts.poppins(
-                  fontSize: 20,
+                  fontSize: 18,
                   color: Colors.yellow[700],
                   fontWeight: FontWeight.bold,
                 ),
@@ -162,7 +161,7 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "No crop updates available",
+                              'No data available',
                               style: GoogleFonts.poppins(
                                 fontSize: 16,
                               ),
@@ -180,20 +179,16 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
                         child: Column(
                           children: [
                             ..._cropUpdates.map((update) {
-                              final description = update['description'] ?? '';
+                              final descriptionKey =
+                                  update['description'] ?? '';
                               final addDate = update['addDate'] ?? '';
                               final id = update['_id'];
-                              final showDays =
-                                  description == "රෝපණය (වගා කිරීම)";
-                              final days =
-                                  showDays ? _daysSinceAddDate(addDate) : null;
 
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  
                                   _buildCropUpdateCard(
-                                      addDate, description, id),
+                                      addDate, descriptionKey, id, update),
                                 ],
                               );
                             }).toList(),
@@ -213,11 +208,15 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
     );
   }
 
-  Widget _buildCropUpdateCard(String date, String description, String id) {
-    final update =
-        _cropUpdates.firstWhere((u) => u['_id'] == id, orElse: () => {});
-
+  Widget _buildCropUpdateCard(
+      String date, String descriptionKey, String id, Map update) {
     final days = _daysSinceAddDate(date);
+
+    // Helper to get display text (simplified without translations)
+    String getDisplayText(String value) {
+      // Return the value as-is since we're removing translations
+      return value;
+    }
 
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -251,7 +250,7 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
             ),
             const SizedBox(height: 10),
             Text(
-              description,
+              descriptionKey,
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.normal,
                 fontSize: 14,
@@ -264,7 +263,7 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 6.0),
                 child: Text(
-                  "පොහොර වර්ගය : ${update['fertilizerType']}",
+                  'Fertilizer Type: ${getDisplayText(update['fertilizerType'].toString())}',
                   style:
                       GoogleFonts.poppins(fontSize: 14, color: Colors.black87),
                 ),
@@ -274,7 +273,7 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
                 child: Text(
-                  "පොහොර ප්‍රමාණය: ${update['fertilizerAmount']} ${update['fertilizerUnit']}",
+                  'Fertilizer Amount: ${update['fertilizerAmount'].toString()} ${update['fertilizerUnit'].toString()}',
                   style:
                       GoogleFonts.poppins(fontSize: 14, color: Colors.black87),
                 ),
@@ -313,17 +312,17 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text("Confirm Delete",
+        title: Text('Confirm Delete',
             style: GoogleFonts.poppins(
               color: Colors.black,
               fontWeight: FontWeight.bold,
             )),
-        content: Text("Are you sure you want to delete this crop update?",
+        content: Text('Are you sure you want to delete this item?',
             style: GoogleFonts.poppins(color: Colors.black)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text("Cancel",
+            child: Text('Cancel',
                 style: GoogleFonts.poppins(
                   color: const Color.fromRGBO(87, 164, 91, 0.8),
                 )),
@@ -334,7 +333,7 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
               _deleteCropUpdate(id);
             },
             child:
-                Text("Delete", style: GoogleFonts.poppins(color: Colors.red)),
+                Text('Delete', style: GoogleFonts.poppins(color: Colors.red)),
           ),
         ],
       ),

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:farmeragriapp/api/cultivation_api.dart';
 import 'package:farmeragriapp/data/cultivation_data.dart';
 import 'package:farmeragriapp/models/cultivation_model.dart';
@@ -33,29 +32,29 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
 
   // List of crop yield size options
   final List<String> _yieldSizeOptions = [
-    'අක්කර 1/4 ',
-    'අක්කර 1/2',
-    'අක්කර 3/4',
-    'අක්කර 1',
-    'අක්කර 2',
-    'අක්කර 3',
-    'අක්කර 4',
-    'අක්කර 5',
-    'අක්කර 6',
-    'අක්කර 7',
-    'අක්කර 8',
-    'අක්කර 9',
-    'අක්කර 10',
-    'අක්කර 11',
-    'අක්කර 12',
-    'අක්කර 13',
-    'අක්කර 14',
-    'අක්කර 15',
-    'අක්කර 16',
-    'අක්කර 17',
-    'අක්කර 18',
-    'අක්කර 19',
-    'අක්කර 20'
+    '1/4 acre',
+    '1/2 acre',
+    '3/4 acre',
+    '1 acre',
+    '2 acres',
+    '3 acres',
+    '4 acres',
+    '5 acres',
+    '6 acres',
+    '7 acres',
+    '8 acres',
+    '9 acres',
+    '10 acres',
+    '11 acres',
+    '12 acres',
+    '13 acres',
+    '14 acres',
+    '15 acres',
+    '16 acres',
+    '17 acres',
+    '18 acres',
+    '19 acres',
+    '20 acres'
   ];
 
   @override
@@ -130,8 +129,8 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
   Future<void> _submitData() async {
     if (!_validateForm()) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('please_fill_required'.tr()),
+        const SnackBar(
+          content: Text('Please fill all required fields'),
         ),
       );
       return;
@@ -200,7 +199,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                   left: 50,
                   right: 0,
                   child: Text(
-                    'edit_your_details'.tr(),
+                    'Edit Your Details',
                     style: GoogleFonts.poppins(
                       color: Colors.black,
                       fontSize: 20,
@@ -224,8 +223,8 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                   child: Center(
                     child: Text(
                       widget.existingData != null
-                          ? 'edit_cultivation'.tr()
-                          : 'add_cultivation'.tr(),
+                          ? 'Edit Cultivation'
+                          : 'Add Cultivation',
                       style: GoogleFonts.poppins(
                         color: Colors.white,
                         fontSize: 22,
@@ -240,11 +239,11 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  _buildTextField('member_id'.tr(), memberIdController,
+                  _buildTextField('Member ID', memberIdController,
                       enabled: false),
                   const SizedBox(height: 16),
                   _buildDropdown(
-                      'select_category'.tr(), cropCategories.keys.toList(), (val) {
+                      'Select Category', cropCategories.keys.toList(), (val) {
                     setState(() {
                       _selectedCategory = val;
                       _selectedCrop = null;
@@ -252,7 +251,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                   }, value: _selectedCategory),
                   const SizedBox(height: 16),
                   _buildDropdown(
-                    'select_crop'.tr(),
+                    'Select Crop',
                     _selectedCategory != null
                         ? cropCategories[_selectedCategory]!
                         : [],
@@ -264,7 +263,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                   TextField(
                     controller: _dateController,
                     decoration: InputDecoration(
-                      labelText: 'start_date'.tr(),
+                      labelText: 'Start Date',
                       suffixIcon: IconButton(
                         icon: const Icon(Icons.calendar_month),
                         onPressed: _pickDate,
@@ -277,7 +276,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                   ),
                   const SizedBox(height: 16),
                   _buildDropdown(
-                    'select_district'.tr(),
+                    'Select District',
                     districtCities.keys.toList(),
                     (val) => setState(() {
                       _selectedDistrict = val;
@@ -287,7 +286,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                   ),
                   const SizedBox(height: 16),
                   _buildDropdown(
-                    'select_city'.tr(),
+                    'Select City',
                     _selectedDistrict != null
                         ? districtCities[_selectedDistrict]!
                         : [],
@@ -296,13 +295,13 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                     enabled: _selectedDistrict != null,
                   ),
                   const SizedBox(height: 16),
-                  _buildTextField('location_address'.tr(), addressController),
+                  _buildTextField('Location Address', addressController),
                   const SizedBox(height: 16),
-                  _buildTextField('nic'.tr(), nicController),
+                  _buildTextField('NIC', nicController),
                   const SizedBox(height: 16),
                   DropdownButtonFormField<String>(
                     decoration: InputDecoration(
-                      labelText: 'crop_yield_size'.tr(),
+                      labelText: 'Crop Yield Size',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -317,7 +316,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                       );
                     }).toList(),
                     validator: (value) =>
-                        value == null ? 'required_field_error'.tr() : null,
+                        value == null ? 'This field is required' : null,
                   ),
                   const SizedBox(height: 24),
                   SizedBox(
@@ -334,9 +333,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                       child: _isSubmitting
                           ? const CircularProgressIndicator(color: Colors.white)
                           : Text(
-                              widget.existingData != null
-                                  ? 'update'.tr()
-                                  : 'submit'.tr(),
+                              widget.existingData != null ? 'Update' : 'Submit',
                               style: GoogleFonts.poppins(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -349,7 +346,6 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                 ],
               ),
             ),
-           
           ],
         ),
       ),
@@ -395,14 +391,14 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
   String _parseAcreValue(String? value) {
     if (value == null || value.isEmpty) return '';
 
-    // Add "අක්කර" prefix to the value
-    return "අක්කර ${value.trim()}";
+    // Return the value as-is since we're using English
+    return value.trim();
   }
 
   num _parseAcreToNum(String? value) {
     if (value == null || value.isEmpty) return 0;
-    // Remove 'අක්කර' and whitespace, then parse the number
-    final cleaned = value.replaceAll('අක්කර', '').trim();
+    // Remove 'acre' and 'acres' and whitespace, then parse the number
+    final cleaned = value.replaceAll(RegExp(r'\bacres?\b'), '').trim();
     // Handle fractions like '1/2'
     if (cleaned.contains('/')) {
       final parts = cleaned.split('/');

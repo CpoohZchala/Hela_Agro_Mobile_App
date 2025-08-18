@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:farmeragriapp/screens/views/farmer/farmer_dashbaord.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,7 +36,7 @@ void showWelcomeDialog(BuildContext context, String userId) {
               ),
               const SizedBox(height: 18),
               Text(
-                "welcome_title".tr(),
+                "Welcome!",
                 style: GoogleFonts.poppins(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -47,7 +46,7 @@ void showWelcomeDialog(BuildContext context, String userId) {
               ),
               const SizedBox(height: 8),
               Text(
-                "sign_in_success".tr(),
+                "Sign in successful!",
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   color: Colors.black87,
@@ -56,7 +55,7 @@ void showWelcomeDialog(BuildContext context, String userId) {
               ),
               const SizedBox(height: 8),
               Text(
-                "redirect_farmer_dashboard".tr(),
+                "Redirecting to farmer dashboard...",
                 style: GoogleFonts.poppins(
                   fontSize: 14,
                   color: Colors.grey[600],

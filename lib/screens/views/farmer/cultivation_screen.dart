@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:farmeragriapp/screens/forms/farmer/addCultivational.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -136,7 +135,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 40),
                   child: Text(
-                    'cultivation_details'.tr(),
+                    'Cultivation Details',
                     style: GoogleFonts.poppins(
                       color: Colors.white,
                       fontSize: 20,
@@ -159,7 +158,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'no_data'.tr(),
+                                'No data available',
                                 style: GoogleFonts.poppins(
                                   fontSize: 16,
                                 ),
@@ -185,7 +184,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                   child: Align(
                                     alignment: Alignment.center,
                                     child: Text(
-                                      "${"days_remaining".tr()} $days",
+                                      "Days since start: $days",
                                       style: GoogleFonts.poppins(
                                         fontSize: 20,
                                         color: Colors.yellow[700],
@@ -240,7 +239,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              "${"member_id".tr()}:$memberId",
+                                              "Member ID: $memberId",
                                               style: GoogleFonts.poppins(
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 12,
@@ -252,7 +251,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                         ),
                                         const SizedBox(height: 10),
                                         Text(
-                                          "${"category".tr()}: $cropCategory",
+                                          "Category: $cropCategory",
                                           style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             color: Colors.black87,
@@ -260,7 +259,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                         ),
                                         const SizedBox(height: 8),
                                         Text(
-                                          "${"crop".tr()}: $cropName",
+                                          "Crop: $cropName",
                                           style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             color: Colors.black87,
@@ -268,7 +267,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                         ),
                                         const SizedBox(height: 8),
                                         Text(
-                                          "${'location'.tr()}: $district, $city",
+                                          "Location: $district, $city",
                                           style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             color: Colors.black87,
@@ -276,7 +275,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                         ),
                                         const SizedBox(height: 8),
                                         Text(
-                                          "${"start_date".tr()}: $startDate",
+                                          "Start Date: $startDate",
                                           style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             color: Colors.black87,
@@ -284,7 +283,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                         ),
                                         const SizedBox(height: 8),
                                         Text(
-                                          "${"nic".tr()}: $nic",
+                                          "NIC: $nic",
                                           style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             color: Colors.black87,
@@ -292,7 +291,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                         ),
                                         const SizedBox(height: 8),
                                         Text(
-                                          "${"crop_yield_size".tr()}: $cropYieldSize ${"acres".tr()}",
+                                          "Crop Yield Size: $cropYieldSize acres",
                                           style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             color: Colors.black87,
@@ -313,7 +312,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                                   builder: (context) =>
                                                       AlertDialog(
                                                     title: Text(
-                                                        'confirm_delete'.tr(),
+                                                        'Confirm Delete',
                                                         style:
                                                             GoogleFonts.poppins(
                                                                 color: Colors
@@ -322,8 +321,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                                                     FontWeight
                                                                         .bold)),
                                                     content: Text(
-                                                        'confirm_delete_msg'
-                                                            .tr(),
+                                                        'Are you sure you want to delete this item?',
                                                         style:
                                                             GoogleFonts.poppins(
                                                                 color: Colors
@@ -333,8 +331,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                                         onPressed: () =>
                                                             Navigator.pop(
                                                                 context),
-                                                        child: Text(
-                                                            'cancel'.tr(),
+                                                        child: Text('Cancel',
                                                             style: GoogleFonts
                                                                 .poppins(
                                                                     color: const Color
@@ -351,8 +348,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                                           _deleteCultivation(
                                                               id);
                                                         },
-                                                        child: Text(
-                                                            'delete'.tr(),
+                                                        child: Text('Delete',
                                                             style: GoogleFonts
                                                                 .poppins(
                                                                     color: Colors

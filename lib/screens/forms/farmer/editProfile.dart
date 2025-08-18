@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -33,7 +32,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     if (_nameController.text.trim().isEmpty &&
         _mobileController.text.trim().isEmpty &&
         _selectedCategory == null) {
-      setState(() => _responseMessage = 'fill_at_least_one'.tr());
+      setState(() => _responseMessage = 'Please fill at least one field');
       return;
     }
 
@@ -88,11 +87,11 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
       } else {
         final errorData = jsonDecode(response.body);
         setState(() => _responseMessage =
-            'update_failed: ${errorData['message'] ?? 'Unknown error'}'.tr());
+            'Update failed: ${errorData['message'] ?? 'Unknown error'}');
       }
     } catch (error) {
       print("Error during profile update: $error");
-      setState(() => _responseMessage = 'error: $error'.tr());
+      setState(() => _responseMessage = 'Error: $error');
     } finally {
       setState(() => _isLoading = false);
     }
@@ -108,7 +107,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(87, 164, 91, 0.8),
         title: Text(
-          'edit_profile'.tr(),
+          'Edit Profile',
           style: GoogleFonts.poppins(
               color: Colors.black, fontWeight: FontWeight.bold),
         ),
@@ -137,7 +136,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     TextFormField(
                       controller: _nameController,
                       decoration: InputDecoration(
-                        labelText: 'full_name'.tr(),
+                        labelText: 'Full Name',
                         labelStyle: labelStyle,
                         filled: true,
                         fillColor: Colors.white,
@@ -148,14 +147,14 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       style: inputStyle,
                       validator: (value) =>
                           value == null || value.trim().isEmpty
-                              ? 'enter_full_name'.tr()
+                              ? 'Please enter full name'
                               : null,
                     ),
                     const SizedBox(height: 20),
                     DropdownButtonFormField<String>(
                       value: _selectedCategory,
                       decoration: InputDecoration(
-                        labelText: 'user_type'.tr(),
+                        labelText: 'User Type',
                         labelStyle: labelStyle,
                         filled: true,
                         fillColor: Colors.white,
@@ -170,7 +169,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         );
                       }).toList(),
                       validator: (value) =>
-                          value == null ? 'select_user_type'.tr() : null,
+                          value == null ? 'Please select user type' : null,
                       onChanged: (String? newValue) {
                         setState(() {
                           _selectedCategory = newValue;
@@ -181,7 +180,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     TextFormField(
                       controller: _mobileController,
                       decoration: InputDecoration(
-                        labelText: 'mobile_number'.tr(),
+                        labelText: 'Mobile Number',
                         labelStyle: labelStyle,
                         filled: true,
                         fillColor: Colors.white,
@@ -193,7 +192,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       keyboardType: TextInputType.phone,
                       validator: (value) =>
                           value == null || value.trim().isEmpty
-                              ? 'enter_mobile_number'.tr()
+                              ? 'Please enter mobile number'
                               : null,
                     ),
                     const SizedBox(height: 30),
@@ -203,9 +202,10 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                           ? const CircularProgressIndicator(color: Colors.white)
                           : const Icon(Icons.update, color: Colors.white),
                       label: Text(
-                       'update'.tr(),
+                        'Update',
                         style: GoogleFonts.poppins(
-                            fontSize: 16, color: Colors.white),             ),
+                            fontSize: 16, color: Colors.white),
+                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(87, 164, 91, 0.8),
                         padding: const EdgeInsets.symmetric(

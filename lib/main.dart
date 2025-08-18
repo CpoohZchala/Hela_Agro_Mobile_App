@@ -1,4 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:farmeragriapp/screens/views/buyer/stockScreen.dart';
+import 'package:farmeragriapp/screens/views/marketingOfficer/FarmerStockScreen.dart';
+import 'package:farmeragriapp/screens/views/marketingOfficer/addHarvestDetails.dart';
 import 'package:flutter/material.dart';
 
 // Screens and Forms
@@ -11,14 +13,12 @@ import 'package:farmeragriapp/screens/forms/farmer/technical_inq_crud.dart';
 import 'package:farmeragriapp/screens/forms/farmer/update_farmer_screen.dart';
 import 'package:farmeragriapp/screens/forms/marketingOfficer/createFarmer.dart';
 import 'package:farmeragriapp/screens/views/farmer/Cultivational_expense.dart';
-import 'package:farmeragriapp/screens/views/buyer/browse_products.dart';
 import 'package:farmeragriapp/screens/views/buyer/buyerDashboard.dart';
 import 'package:farmeragriapp/screens/views/farmer/crop_details_screen.dart';
 import 'package:farmeragriapp/screens/views/farmer/cultivation_screen.dart';
 import 'package:farmeragriapp/screens/forms/farmer/addCultivational.dart';
 import 'package:farmeragriapp/screens/views/farmer/inquiries_screen.dart';
 import 'package:farmeragriapp/screens/forms/farmer/newUpdateForm.dart';
-import 'package:farmeragriapp/screens/views/farmer/predictionscreen.dart';
 import 'package:farmeragriapp/screens/forms/signIn_screen.dart';
 import 'package:farmeragriapp/screens/forms/signUp_screen.dart';
 import 'package:farmeragriapp/screens/views/farmer/splash_screen.dart';
@@ -31,19 +31,9 @@ import 'package:flutter/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   // Suppress MirrorManager warning
   SystemChannels.skia.invokeMethod('Skia.setAllowOpenGL', true);
-  await EasyLocalization.ensureInitialized();
 
-  runApp(
-    EasyLocalization(
-      supportedLocales: const [Locale('en'),Locale('si'),Locale('ta'),],
-      path: 'assets/translations',
-      fallbackLocale: const Locale('en'),
-      startLocale: const Locale('en'),
-      child: const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -54,9 +44,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.green),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
       initialRoute: "/",
       routes: {
         "/": (context) => const SplashScreen(),
@@ -66,7 +53,6 @@ class MyApp extends StatelessWidget {
         "/crop_updates": (context) => const CropDetailsScreen(),
         "/expenses": (context) => const CultivationalExpense(),
         "/inqueries": (context) => const InqueriesScreen(),
-        "/prediction": (context) => const Predictionscreen(),
         "/addCultivational": (context) => const CultivationalAddScreen(),
         "/newcropupdate": (context) => const NewUpdateForm(),
         "/addExpenses": (context) => const AddExpense(),
@@ -84,7 +70,7 @@ class MyApp extends StatelessWidget {
             userType: args?['userType'] ?? 'Buyer',
           );
         },
-        '/browse_products': (context) => const BrowseProductsScreen(),
+        // '/browse_products': (context) => const BrowseProductsScreen(),
         '/officerDashboard': (context) => OfficerDashboard(
               userId: '',
             ),
@@ -101,6 +87,10 @@ class MyApp extends StatelessWidget {
             userType: args?['userType'] ?? 'Marketing Officer',
           );
         },
+        // "/stock": (context) => const StockListScreen(),
+        "/addHarvest": (context) => AddHarvestScreen(),
+        "/getHarvest": (context) => FarmerStockScreen(),
+        "/products": (context) => const OurProductsScreen(),
       },
     );
   }

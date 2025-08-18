@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:farmeragriapp/screens/dialogBox/deleteProfile_dialog.dart';
 import 'package:farmeragriapp/screens/dialogBox/logout_dialog.dart';
 import 'package:farmeragriapp/screens/forms/farmer/changePassword.dart';
@@ -24,8 +23,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String userName = 'loading'.tr();
-  String role = 'loading'.tr();
+  String userName = 'Loading...';
+  String role = 'Loading...';
   String profileImage = "";
   File? _imageFile;
   final ImagePicker _picker = ImagePicker();
@@ -42,16 +41,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   // Show user profile
   Future<void> fetchUserProfile() async {
     try {
-      print(
-          "Fetching user info for userId: ${widget.userId}");
+      print("Fetching user info for userId: ${widget.userId}");
 
-      final response = await http
-          .get(Uri.parse("$apiUrl/${widget.userId}"));
+      final response = await http.get(Uri.parse("$apiUrl/${widget.userId}"));
 
       if (response.statusCode == 404) {
         setState(() {
-          userName = 'user_not_found'.tr();
-          role = 'unknown'.tr();
+          userName = 'User not found';
+          role = 'Unknown';
         });
         return;
       }
@@ -63,8 +60,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       final data = jsonDecode(response.body);
       setState(() {
-        userName = data['fullName'] ?? 'no_name'.tr();
-        role = data['userType'] ?? 'unknown'.tr();
+        userName = data['fullName'] ?? 'No name';
+        role = data['userType'] ?? 'Unknown';
         profileImage = data['profileImage'] ?? "";
       });
       print(
@@ -73,7 +70,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       print("Error fetching profile: $e");
       setState(() {
         userName = "Error loading profile";
-        role = "unknown".tr();
+        role = "Unknown";
       });
     }
   }
@@ -109,16 +106,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
         await fetchUserProfile();
         setState(() => _imageFile = null);
         ScaffoldMessenger.of(context).showSnackBar(
-           SnackBar(content: Text('profile_image_updated'.tr())),
+          const SnackBar(content: Text('Profile image updated successfully')),
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-           SnackBar(content: Text('failed_update_image'.tr())),
+          const SnackBar(content: Text('Failed to update image')),
         );
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-         SnackBar(content: Text('something_went_wrong'.tr())),
+        const SnackBar(content: Text('Something went wrong')),
       );
     }
   }
@@ -131,12 +128,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     if (response.statusCode == 200) {
       ScaffoldMessenger.of(context).showSnackBar(
-       SnackBar(content: Text('profile_deleted_success'.tr())),
+        const SnackBar(content: Text('Profile deleted successfully')),
       );
       Navigator.pushReplacementNamed(context, "/signIn");
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-         SnackBar(content: Text('failed_delete_profile'.tr())),
+        const SnackBar(content: Text('Failed to delete profile')),
       );
     }
   }
@@ -228,7 +225,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   _buildProfileOption(
                     icon: Icons.edit,
-                    title: 'edit_profile'.tr(),
+                    title: 'Edit Profile',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -242,7 +239,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const Divider(thickness: 1, color: Colors.grey),
                   _buildProfileOption(
                     icon: Icons.delete,
-                    title: 'delete_profile'.tr(),
+                    title: 'Delete Profile',
                     onTap: () {
                       showDeleteProfileDialog(context, widget.userId);
                     },
@@ -250,7 +247,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const Divider(thickness: 1, color: Colors.grey),
                   _buildProfileOption(
                     icon: Icons.lock,
-                    title: 'change_password'.tr(),
+                    title: 'Change Password',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -266,7 +263,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const Divider(thickness: 1, color: Colors.grey),
                   _buildProfileOption(
                     icon: Icons.logout,
-                    title:'logout'.tr(),
+                    title: 'Logout',
                     onTap: () {
                       showLogOutDialog(context, widget.userId);
                     },

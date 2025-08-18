@@ -49,12 +49,13 @@ class _OfficerHomeState extends State<OfficerHome> {
       backgroundColor: const Color(0xFFF6F8FA),
       body: Stack(
         children: [
-          Positioned.fill(
-            child: Image.asset(
-              "assets/images/background4.png",
-              fit: BoxFit.cover,
-            ),
+          // Full-screen background image
+        Positioned.fill(
+          child: Image.asset(
+            "assets/images/background_1.png",
+            fit: BoxFit.cover,
           ),
+        ),
           Column(
             children: <Widget>[
               ClipPath(
@@ -117,7 +118,20 @@ class _OfficerHomeState extends State<OfficerHome> {
                       "/manageFarmers",
                       gridFontSize,
                     ),
-                   
+                     _modernGridButton(
+                      context,
+                      "Add Harvest",
+                      Icons.add,
+                      "/addHarvest",
+                      gridFontSize,
+                    ),
+                     _modernGridButton(
+                      context,
+                      "Harvest Details",
+                      Icons.manage_history_sharp,
+                      "/getHarvest",
+                      gridFontSize,
+                    ),
                     _modernGridButton(
                       context,
                       "Profile",
@@ -128,7 +142,7 @@ class _OfficerHomeState extends State<OfficerHome> {
                         'userId': userId ?? '',
                         'userType': 'Officer'
                       },
-                    ),
+                    )
                    
                   ],
                 ),

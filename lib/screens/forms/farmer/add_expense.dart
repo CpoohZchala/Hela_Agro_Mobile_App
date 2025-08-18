@@ -26,7 +26,7 @@ class _AddExpenseState extends State<AddExpense> {
   final _formKey = GlobalKey<FormState>();
   bool _isSubmitting = false;
 
-  // Add this list for dropdown options
+  // Keep this list in Sinhala as requested
   final List<String> _expenseDescriptions = [
     "බිම සකස් කිරීම",
     "බීජ තේරීම සහ බීජ වගාව",
@@ -225,7 +225,7 @@ class _AddExpenseState extends State<AddExpense> {
                           : null,
                     ),
                     const SizedBox(height: 10),
-                    // Dropdown for description
+                    // Dropdown for description (displays Sinhala options)
                     DropdownButtonFormField<String>(
                       value: _selectedDescription,
                       items: _expenseDescriptions
@@ -257,33 +257,6 @@ class _AddExpenseState extends State<AddExpense> {
                           : null,
                     ),
                     const SizedBox(height: 10),
-                    // Hide the manual description field
-                    // TextFormField(
-                    //   controller: _descriptionController,
-                    //   maxLength: _maxChars,
-                    //   maxLines: 3,
-                    //   decoration: InputDecoration(
-                    //     labelText: "Description about crop expense",
-                    //     labelStyle: GoogleFonts.poppins(color: Colors.black),
-                    //     counterText: "",
-                    //     border: OutlineInputBorder(
-                    //         borderRadius: BorderRadius.circular(10)),
-                    //     focusedBorder: OutlineInputBorder(
-                    //       borderRadius: BorderRadius.circular(10),
-                    //       borderSide: const BorderSide(
-                    //           color: Color.fromRGBO(87, 164, 91, 0.8),
-                    //           width: 2),
-                    //     ),
-                    //   ),
-                    //   validator: (value) => value == null || value.isEmpty
-                    //       ? "Please enter description"
-                    //       : null,
-                    // ),
-                    // Align(
-                    //   alignment: Alignment.bottomRight,
-                    //   child: Text("$_charCount/$_maxChars",
-                    //       style: GoogleFonts.poppins()),
-                    // ),
                     TextFormField(
                       controller: _expenseController,
                       keyboardType: TextInputType.number,

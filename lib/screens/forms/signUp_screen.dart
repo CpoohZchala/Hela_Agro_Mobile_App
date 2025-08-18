@@ -171,7 +171,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                             const SizedBox(height: 10),
                             Text(
-                              "sign_up".tr(),
+                              "Sign Up",
                               style: GoogleFonts.poppins(
                                 fontSize: headerFontSize,
                                 fontWeight: FontWeight.bold,
@@ -184,7 +184,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               child: DropdownButtonFormField<String>(
                                 value: _selectedCategory,
                                 decoration: InputDecoration(
-                                  labelText: "signup_category".tr(),
+                                  labelText: "Select Category",
                                   labelStyle: GoogleFonts.poppins(
                                       fontSize: 15, color: Colors.black),
                                   filled: true,
@@ -216,14 +216,14 @@ class _SignupScreenState extends State<SignupScreen> {
                                 },
                               ),
                             ),
-                            _buildTextField(nameController, "full_name".tr(),
+                            _buildTextField(nameController, "Full Name",
                                 isDesktop, isTablet),
-                            _buildTextField(mobileController, "mobile_number".tr(),
+                            _buildTextField(mobileController, "Mobile Number",
                                 isDesktop, isTablet),
-                            _buildPasswordField(passwordController, "password".tr(),
+                            _buildPasswordField(passwordController, "Password",
                                 isDesktop, isTablet),
                             _buildPasswordField(confirmPasswordController,
-                                "confirm_password".tr(), isDesktop, isTablet),
+                                "Confirm Password", isDesktop, isTablet),
                             const SizedBox(height: 24),
                             SizedBox(
                               width: double.infinity,
@@ -240,7 +240,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 ),
                                 onPressed: signUp,
                                 child: Text(
-                                  "sign_up_button".tr(),
+                                  "Sign Up",
                                   style: GoogleFonts.poppins(
                                     fontSize: buttonFontSize,
                                     fontWeight: FontWeight.bold,
@@ -252,11 +252,11 @@ class _SignupScreenState extends State<SignupScreen> {
                             const SizedBox(height: 16),
                             RichText(
                               text: TextSpan(
-                                text: "have_account".tr(),
+                                text: "Already have an account? ",
                                 style: GoogleFonts.poppins(color: Colors.black),
                                 children: [
                                   TextSpan(
-                                    text: "sign_in".tr(),
+                                    text: "Sign In",
                                     style: GoogleFonts.poppins(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,

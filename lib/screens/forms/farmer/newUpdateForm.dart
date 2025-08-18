@@ -30,21 +30,29 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
 
   final List<String> _fertilizerUnits = ['Kg', 'g', 'l', 'ml'];
 
-  final List<String> _cropUpdateOptions = [
-    "බිම සකස් කිරීම",
-    "බීජ තේරීම සහ බීජ වගාව",
-    "රෝපණය (වගා කිරීම)",
-    "පොහොර යෙදීම",
-    "ජල සපයීම (පෙරලීම)",
-    "වාලි කිරීම සහ නියමිත පාලනය",
-    "වර්ධනය පරික්ෂා කිරීම",
-    "අස්වනු තක්සේරු කිරීම",
-    "අස්වනු කිරීම",
-    "අස්වනු ගබඩා කිරීම",
-    "අස්වනු බෙදාහැරීම"
-  ];
+  // Keep crop update options in Sinhala as requested
+  final Map<String, String> _cropUpdateOptions = {
+    'බිම සකස් කිරීම': 'බිම සකස් කිරීම',
+    'බීජ තේරීම සහ බීජ වගාව': 'බීජ තේරීම සහ බීජ වගාව',
+    'රෝපණය': 'රෝපණය',
+    'පොහොර යෙදීම': 'පොහොර යෙදීම',
+    'ජල සපයීම': 'ජල සපයීම',
+    'වාලි කිරීම සහ පාලනය': 'වාලි කිරීම සහ පාලනය',
+    'වර්ධනය නිරීක්ෂණය': 'වර්ධනය නිරීක්ෂණය',
+    'අස්වනු ඇස්තමේන්තුව': 'අස්වනු ඇස්තමේන්තුව',
+    'අස්වනු කැපීම': 'අස්වනු කැපීම',
+    'ගබඩාව': 'ගබඩාව',
+    'බෙදාහැරීම': 'බෙදාහැරීම'
+  };
 
   String? _selectedDescription;
+
+  final Map<String, String> _fertilizerTypeOptions = {
+    'කාබනික': 'කාබනික',
+    'රසායනික': 'රසායනික',
+    'මිශ්‍රිත': 'මිශ්‍රිත'
+  };
+
   @override
   void initState() {
     super.initState();
@@ -60,10 +68,18 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
 
   void _initializeFormData() {
     if (widget.existingData != null) {
-      _descriptionController.text = widget.existingData['description'] ?? '';
       _selectedDescription = widget.existingData['description'];
+      _descriptionController.text = _selectedDescription ?? '';
+
       _dateController.text = widget.existingData['addDate'] ?? '';
       _parseExistingDate();
+
+      _fertilizerTypeController.text =
+          widget.existingData['fertilizerType'] ?? '';
+      _fertilizerAmountController.text =
+          widget.existingData['fertilizerAmount']?.toString() ?? '';
+      _selectedFertilizerUnit =
+          widget.existingData['fertilizerUnit']?.toString();
     }
   }
 
@@ -120,25 +136,20 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
     setState(() => _isSubmitting = true);
 
     try {
-      // Build the request body
       final Map<String, dynamic> updateData = {
         'id': widget.existingData != null ? widget.existingData['_id'] : null,
         'memberId': "",
         'addDate': _dateController.text,
-        'description': _descriptionController.text,
+        'description': _selectedDescription,
       };
 
-      // Add fertilizer fields only if description is "පොහොර යෙදීම"
-      if (_selectedDescription == "පොහොර යෙදීම") {
+      if (_selectedDescription == 'පොහොර යෙදීම') {
         updateData['fertilizerType'] = _fertilizerTypeController.text;
         updateData['fertilizerAmount'] =
             double.tryParse(_fertilizerAmountController.text) ?? 0;
         updateData['fertilizerUnit'] = _selectedFertilizerUnit;
       }
 
-      print(updateData); // <-- Add this line to log the request body
-
-      // If you use a model, update this part accordingly
       final update = CropUpdate.fromJson(updateData);
 
       final message = await CropUpdateApi().submitCropUpdate(
@@ -160,13 +171,6 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
     }
   }
 
-  // Add this list to your state class
-  final List<String> _fertilizerTypeOptions = [
-    "ජෛව පොහොර (Organic)",
-    "රසායනික පොහොර (Chemical)",
-    "මිශ්‍ර පොහොර (Mixed or Compound)"
-  ];
-
   int _daysSinceAddDate(String? addDate) {
     if (addDate == null || addDate.isEmpty) return 0;
     try {
@@ -176,31 +180,6 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
     } catch (e) {
       return 0;
     }
-  }
-
-  Widget _buildCropUpdateCard(String date, String description, String id) {
-    final showDays = description == "රෝපණය (වගා කිරීම)";
-    final days = showDays ? _daysSinceAddDate(date) : null;
-
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (showDays)
-              Text(
-                "පැල වලට දින ගණන: $days",
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                  color: Colors.green[700],
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
   }
 
   @override
@@ -240,8 +219,8 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
             right: 0,
             child: Text(
               widget.existingData != null
-                  ? "Edit Crop Update"
-                  : "New Crop Update",
+                  ? 'Edit Crop Update'
+                  : 'New Crop Update',
               style: GoogleFonts.poppins(
                 color: Colors.black,
                 fontSize: 20,
@@ -260,7 +239,7 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
                     TextFormField(
                       controller: _dateController,
                       decoration: InputDecoration(
-                        labelText: "Date",
+                        labelText: 'Date',
                         labelStyle: GoogleFonts.poppins(
                             fontSize: 15,
                             color: const Color.fromRGBO(87, 164, 91, 0.8)),
@@ -281,15 +260,32 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
                       ),
                       readOnly: true,
                       validator: (value) => value == null || value.isEmpty
-                          ? "Please select a date"
+                          ? 'Please select a date'
                           : null,
                     ),
                     const SizedBox(height: 10),
-                    // Dropdown for crop update description
                     DropdownButtonFormField<String>(
                       value: _selectedDescription,
+                      items: _cropUpdateOptions.entries.map((entry) {
+                        return DropdownMenuItem<String>(
+                          value: entry.key,
+                          child:
+                              Text(entry.value, style: GoogleFonts.poppins()),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedDescription = value;
+                          _descriptionController.text = value ?? '';
+                          if (value != "පොහොර යෙදීම") {
+                            _fertilizerTypeController.clear();
+                            _fertilizerAmountController.clear();
+                            _selectedFertilizerUnit = null;
+                          }
+                        });
+                      },
                       decoration: InputDecoration(
-                        labelText: "Select Crop Update",
+                        labelText: 'Select Crop Update',
                         labelStyle: GoogleFonts.poppins(
                             fontSize: 15,
                             color: const Color.fromRGBO(87, 164, 91, 0.8)),
@@ -304,37 +300,18 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
                           ),
                         ),
                       ),
-                      items: _cropUpdateOptions.map((option) {
-                        return DropdownMenuItem<String>(
-                          value: option,
-                          child: Text(option, style: GoogleFonts.poppins()),
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedDescription = value;
-                          _descriptionController.text = value ?? '';
-                          // Reset fertilizer fields if not selected
-                          if (value != "පොහොර යෙදීම") {
-                            _fertilizerTypeController.clear();
-                            _fertilizerAmountController.clear();
-                            _selectedFertilizerUnit = null;
-                          }
-                        });
-                      },
                       validator: (value) => value == null || value.isEmpty
                           ? "Please select a crop update"
                           : null,
                     ),
                     const SizedBox(height: 10),
-                    // Show fertilizer fields only if "පොහොර යෙදීම" is selected
-                    if (_selectedDescription == "පොහොර යෙදීම") ...[
+                    if (_selectedDescription == 'පොහොර යෙදීම') ...[
                       DropdownButtonFormField<String>(
                         value: _fertilizerTypeController.text.isNotEmpty
                             ? _fertilizerTypeController.text
                             : null,
                         decoration: InputDecoration(
-                          labelText: "පොහොර වර්ගය",
+                          labelText: 'Fertilizer Type',
                           labelStyle: GoogleFonts.poppins(
                               fontSize: 15,
                               color: const Color.fromRGBO(87, 164, 91, 0.8)),
@@ -349,10 +326,11 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
                             ),
                           ),
                         ),
-                        items: _fertilizerTypeOptions.map((type) {
+                        items: _fertilizerTypeOptions.entries.map((entry) {
                           return DropdownMenuItem<String>(
-                            value: type,
-                            child: Text(type, style: GoogleFonts.poppins()),
+                            value: entry.key,
+                            child:
+                                Text(entry.value, style: GoogleFonts.poppins()),
                           );
                         }).toList(),
                         onChanged: (value) {
@@ -373,7 +351,7 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
                               controller: _fertilizerAmountController,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
-                                labelText: "Amount",
+                                labelText: 'Amount',
                                 labelStyle: GoogleFonts.poppins(
                                     fontSize: 15,
                                     color:
@@ -390,12 +368,12 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
                                 ),
                               ),
                               validator: (value) {
-                                if (_selectedDescription == "පොහොර යෙදීම") {
+                                if (_selectedDescription == 'පොහොර යෙදීම') {
                                   if (value == null || value.isEmpty) {
-                                    return "Enter amount";
+                                    return 'Enter amount';
                                   }
                                   if (double.tryParse(value) == null) {
-                                    return "Enter valid number";
+                                    return 'Enter valid number';
                                   }
                                 }
                                 return null;
@@ -408,7 +386,7 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
                             child: DropdownButtonFormField<String>(
                               value: _selectedFertilizerUnit,
                               decoration: InputDecoration(
-                                labelText: "Unit",
+                                labelText: 'Unit',
                                 labelStyle: GoogleFonts.poppins(
                                     fontSize: 15,
                                     color:
@@ -437,9 +415,9 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
                                 });
                               },
                               validator: (value) {
-                                if (_selectedDescription == "පොහොර යෙදීම" &&
+                                if (_selectedDescription == 'පොහොර යෙදීම' &&
                                     (value == null || value.isEmpty)) {
-                                  return "Select unit";
+                                  return 'Select unit';
                                 }
                                 return null;
                               },
@@ -454,7 +432,7 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
                       maxLength: _maxChars,
                       maxLines: 3,
                       decoration: InputDecoration(
-                        labelText: "Description about Crop update..",
+                        labelText: 'Description',
                         labelStyle: GoogleFonts.poppins(
                             fontSize: 15,
                             color: const Color.fromRGBO(87, 164, 91, 0.8)),
@@ -471,7 +449,7 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
                         counterText: "",
                       ),
                       validator: (value) => value == null || value.isEmpty
-                          ? "Please enter a description"
+                          ? 'Please enter a description'
                           : null,
                     ),
                     Align(
@@ -501,8 +479,8 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
                                 color: Colors.white)
                             : Text(
                                 widget.existingData != null
-                                    ? "Update"
-                                    : "Submit",
+                                    ? 'Update'
+                                    : 'Submit',
                                 style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,

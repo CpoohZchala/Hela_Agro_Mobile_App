@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:farmeragriapp/api/auth_api.dart';
 import 'package:farmeragriapp/models/user_model.dart';
 import 'package:farmeragriapp/screens/dialogBox/welcomBox.dart';
@@ -93,70 +92,6 @@ class _SignInScreenState extends State<SignInScreen> {
     }
   }
 
-  Widget _buildLanguageButtons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        TextButton(
-          onPressed: () async {
-            await context.setLocale(Locale('en'));
-            if (mounted) {
-              setState(() {});
-            }
-          },
-          style: TextButton.styleFrom(
-            backgroundColor: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-          child: const Text(
-            'English',
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        const SizedBox(width: 10),
-        TextButton(
-          onPressed: () async {
-            await context.setLocale(Locale('si'));
-            if (mounted) {
-              setState(() {});
-            }
-          },
-          style: TextButton.styleFrom(
-            backgroundColor: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-          child: const Text(
-            'සිංහල',
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        const SizedBox(width: 10),
-        TextButton(
-          onPressed: () async {
-            await context.setLocale(Locale('ta'));
-            if (mounted) {
-              setState(() {});
-            }
-          },
-          style: TextButton.styleFrom(
-            backgroundColor: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-          child: const Text(
-            'தமிழ்',
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -248,9 +183,6 @@ class _SignInScreenState extends State<SignInScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            // Add language buttons at the top of the card
-                            _buildLanguageButtons(),
-                            const SizedBox(height: 16),
                             Image.asset(
                               "assets/images/SignIn.png",
                               width: logoSize,
@@ -258,7 +190,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                             const SizedBox(height: 10),
                             Text(
-                              'sign_in'.tr(),
+                              'Sign In',
                               style: GoogleFonts.poppins(
                                 fontSize: headerFontSize,
                                 fontWeight: FontWeight.bold,
@@ -266,15 +198,15 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                             ),
                             const SizedBox(height: 24),
-                            _buildTextField(mobileController,
-                                "mobile_number".tr(), isDesktop, isTablet),
-                            _buildPasswordField(passwordController,
-                                "password".tr(), isDesktop, isTablet),
+                            _buildTextField(mobileController, "Mobile Number",
+                                isDesktop, isTablet),
+                            _buildPasswordField(passwordController, "Password",
+                                isDesktop, isTablet),
                             const SizedBox(height: 10),
                             DropdownButtonFormField<String>(
                               value: _selectedUserType,
                               decoration: InputDecoration(
-                                labelText: "select_user_type".tr(),
+                                labelText: "Select User Type",
                                 labelStyle: GoogleFonts.poppins(
                                   fontSize: 15,
                                   color: const Color.fromARGB(204, 0, 0, 0),
@@ -322,7 +254,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 ),
                                 onPressed: signIn,
                                 child: Text(
-                                  "sign_in_button".tr(),
+                                  "Sign In",
                                   style: GoogleFonts.poppins(
                                     fontSize: buttonFontSize,
                                     fontWeight: FontWeight.bold,
@@ -334,11 +266,11 @@ class _SignInScreenState extends State<SignInScreen> {
                             const SizedBox(height: 16),
                             RichText(
                               text: TextSpan(
-                                text: "no_account".tr(),
+                                text: "Don't have an account? ",
                                 style: GoogleFonts.poppins(color: Colors.black),
                                 children: [
                                   TextSpan(
-                                    text: "sign_up".tr(),
+                                    text: "Sign Up",
                                     style: GoogleFonts.poppins(
                                       color: const Color.fromARGB(255, 0, 0, 0),
                                       fontWeight: FontWeight.bold,

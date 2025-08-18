@@ -173,7 +173,7 @@ class _BuyerHomeState extends State<BuyerHome> {
                       context,
                       "Browse Products",
                       Icons.shopping_cart,
-                      "/browse_products",
+                      "/products",
                       gridFontSize,
                     ),
                     _modernGridButton(

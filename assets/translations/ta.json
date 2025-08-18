@@ -42,7 +42,8 @@
   "error_loading_profile": "சுயவிவரம் ஏற்றும் போது பிழை",
   "no_name": "பெயர் இல்லை",
 
-   "submit_soil_test_report": "மண் பரிசோதனை அறிக்கையை சமர்ப்பிக்கவும்",
+
+  "submit_soil_test_report": "மண் பரிசோதனை அறிக்கையை சமர்ப்பிக்கவும்",
   "edit_soil_test_report": "மண் பரிசோதனை அறிக்கையை திருத்தவும்",
   "soil_ph": "மண் pH",
   "example_soil_ph": "உதா. 6.5",
@@ -83,6 +84,7 @@
   "update_failed": "❌ புதுப்பிப்பு தோல்வியடைந்தது: {{error}}",
   "error": "❗ பிழை: {{error}}",
   "fill_at_least_one": "குறைந்தது ஒரு புலத்தை நிரப்பவும்.",
+
 
   "confirm_delete_account": "கணக்கை நீக்க உறுதிப்படுத்தவும்",
   "are_you_sure_delete": "உங்கள் கணக்கை நீக்க விரும்புகிறீர்களா?",
@@ -159,37 +161,49 @@
     "submit": "சமர்ப்பிக்கவும்",
     "update": "புதுப்பிக்கவும்",
     "days_since_planting": "நட்டு வைத்து கடந்த நாட்கள்: ",
+
     
-    "crop_update_options": [
-      "பூமி தயாரிப்பு",
-      "விதைத் தேர்வு மற்றும் நர்சரி",
-      "நட்டு விதைத்தல் (நடவு)",
-      "உரம் போடுதல்",
-      "நீர்ப்பாசனம்",
-      "களைப்படுத்துதல் மற்றும் பூச்சிக்கொலை",
-      "வளர்ச்சி கண்காணிப்பு",
-      "மக்காச்சீலை மதிப்பீடு",
-      "அறுவடை",
-      "அறுவடை சேமிப்பு",
-      "அறுவடை பகிர்வு"
-    ],
+  
+  "crop_updates": {
+    "soil_preparation": "பூமி தயாரிப்பு",
+    "seed_selection_and_nursery": "விதைத் தேர்வு மற்றும் நர்சரி",
+    "transplanting": "நட்டு விதைத்தல் (நடவு)",
+    "fertilizing": "உரம் போடுதல்",
+    "watering": "நீர்ப்பாசனம்",
+    "weeding_and_control": "களைப்படுத்துதல் மற்றும் பூச்சிக்கொலை",
+    "growth_monitoring": "வளர்ச்சி கண்காணிப்பு",
+    "yield_estimation": "மக்காச்சீலை மதிப்பீடு",
+    "harvesting": "அறுவடை",
+    "storage": "அறுவடை சேமிப்பு",
+    "distribution": "அறுவடை பகிர்வு"
+  }
+}
+,
+
     
-    "fertilizer_type_options": [
-      "உரிகமான உரம் (Organic)",
-      "ராசாயன உரம் (Chemical)",
-      "கலப்பு உரம் (Mixed or Compound)"
-    ],
+    "fertilizer_types": {
+      "organic":"உரிகமான உரம் (Organic)",
+      "chemical":"ராசாயன உரம் (Chemical)",
+      "mixed":"கலப்பு உரம் (Mixed or Compound)"
+    },
+
     
-    "fertilizer_units": [
+    "units": [
       "Kg",
       "g",
       "l",
       "ml"
-    ]
+    ],
+
+  "no_updates": "பயிர் புதுப்பிப்புகள் இல்லை",
+  "planting_days": "நடவு செய்ததிலிருந்து கடந்த நாட்கள்: {days}",
+  "fertilizer_type": "உரம் வகை: {{type}}",
+  "fertilizer_amount": "உரம் அளவு: {{amount}} {{unit}}",
+  "delete_message": "இந்த பயிர் புதுப்பிப்பை நீக்க விரும்புகிறீர்களா?"
   }
 
 
 
 
 
-}
+
