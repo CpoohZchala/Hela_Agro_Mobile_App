@@ -8,8 +8,7 @@ class CheckoutScreen extends StatefulWidget {
   final String authToken;
 
   const CheckoutScreen(
-      {Key? key, required this.onCheckout, required this.authToken})
-      : super(key: key);
+      {super.key, required this.onCheckout, required this.authToken});
 
   @override
   State<CheckoutScreen> createState() => _CheckoutScreenState();

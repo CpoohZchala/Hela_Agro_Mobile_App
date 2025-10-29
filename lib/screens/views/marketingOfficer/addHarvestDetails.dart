@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 
 class AddHarvestScreen extends StatefulWidget {
+  const AddHarvestScreen({super.key});
+
   @override
   _AddHarvestScreenState createState() => _AddHarvestScreenState();
 }
@@ -37,7 +39,7 @@ class _AddHarvestScreenState extends State<AddHarvestScreen> {
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Failed to load farmers")),
+        const SnackBar(content: Text("Failed to load farmers")),
       );
     }
   }
@@ -54,7 +56,7 @@ class _AddHarvestScreenState extends State<AddHarvestScreen> {
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Failed to load crops")),
+        const SnackBar(content: Text("Failed to load crops")),
       );
     }
   }
@@ -127,7 +129,7 @@ class _AddHarvestScreenState extends State<AddHarvestScreen> {
         fillColor: Colors.grey.shade100,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.green, width: 2),
+          borderSide: const BorderSide(color: Colors.green, width: 2),
           borderRadius: BorderRadius.circular(14),
         ),
       ),
@@ -139,7 +141,7 @@ class _AddHarvestScreenState extends State<AddHarvestScreen> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       elevation: 6,
       shadowColor: Colors.green.withOpacity(0.2),
-      margin: EdgeInsets.only(bottom: 22),
+      margin: const EdgeInsets.only(bottom: 22),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -150,7 +152,7 @@ class _AddHarvestScreenState extends State<AddHarvestScreen> {
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.green.shade800)),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
             child,
           ],
         ),
@@ -210,9 +212,9 @@ class _AddHarvestScreenState extends State<AddHarvestScreen> {
                       },
                     ),
                     if (selectedFarmer != null) ...[
-                      SizedBox(height: 14),
+                      const SizedBox(height: 14),
                       Container(
-                        padding: EdgeInsets.all(14),
+                        padding: const EdgeInsets.all(14),
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
@@ -227,7 +229,7 @@ class _AddHarvestScreenState extends State<AddHarvestScreen> {
                             BoxShadow(
                                 color: Colors.green.withOpacity(0.1),
                                 blurRadius: 8,
-                                offset: Offset(0, 4))
+                                offset: const Offset(0, 4))
                           ],
                         ),
                         child: Column(
@@ -242,7 +244,7 @@ class _AddHarvestScreenState extends State<AddHarvestScreen> {
                         ),
                       ),
                     ],
-                    SizedBox(height: 14),
+                    const SizedBox(height: 14),
                     buildTextField(
                         label: "Address", controller: addressController),
                   ],
@@ -255,7 +257,7 @@ class _AddHarvestScreenState extends State<AddHarvestScreen> {
                 child: Column(
                   children: [
                     DropdownButtonFormField<Map<String, dynamic>>(
-                      value: selectedCrop,
+                      initialValue: selectedCrop,
                       decoration: InputDecoration(
                         labelText: "Crop Name",
                         labelStyle: GoogleFonts.poppins(),
@@ -277,21 +279,21 @@ class _AddHarvestScreenState extends State<AddHarvestScreen> {
                         });
                       },
                     ),
-                    SizedBox(height: 14),
+                    const SizedBox(height: 14),
                     buildTextField(
                         label: "Total Amount (kg)",
                         controller: totalAmountController,
                         type: TextInputType.number),
-                    SizedBox(height: 14),
+                    const SizedBox(height: 14),
                     buildTextField(
                         label: "Price per Kg",
                         controller: priceController,
                         type: TextInputType.number),
-                    SizedBox(height: 14),
+                    const SizedBox(height: 14),
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green.shade600,
-                        minimumSize: Size(double.infinity, 52),
+                        minimumSize: const Size(double.infinity, 52),
                         elevation: 3,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(14)),
@@ -307,7 +309,7 @@ class _AddHarvestScreenState extends State<AddHarvestScreen> {
                           setState(() => harvestDate = picked);
                         }
                       },
-                      icon: Icon(Icons.calendar_today, color: Colors.white),
+                      icon: const Icon(Icons.calendar_today, color: Colors.white),
                       label: Text(
                         harvestDate == null
                             ? "Select Harvest Date"
@@ -321,11 +323,11 @@ class _AddHarvestScreenState extends State<AddHarvestScreen> {
               ),
 
               // Submit button
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green.shade800,
-                  minimumSize: Size(double.infinity, 55),
+                  minimumSize: const Size(double.infinity, 55),
                   elevation: 4,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16)),

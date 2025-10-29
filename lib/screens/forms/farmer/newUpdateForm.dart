@@ -265,7 +265,7 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
                     ),
                     const SizedBox(height: 10),
                     DropdownButtonFormField<String>(
-                      value: _selectedDescription,
+                      initialValue: _selectedDescription,
                       items: _cropUpdateOptions.entries.map((entry) {
                         return DropdownMenuItem<String>(
                           value: entry.key,
@@ -307,7 +307,7 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
                     const SizedBox(height: 10),
                     if (_selectedDescription == 'පොහොර යෙදීම') ...[
                       DropdownButtonFormField<String>(
-                        value: _fertilizerTypeController.text.isNotEmpty
+                        initialValue: _fertilizerTypeController.text.isNotEmpty
                             ? _fertilizerTypeController.text
                             : null,
                         decoration: InputDecoration(
@@ -384,7 +384,7 @@ class _NewUpdateFormState extends State<NewUpdateForm> {
                           Expanded(
                             flex: 1,
                             child: DropdownButtonFormField<String>(
-                              value: _selectedFertilizerUnit,
+                              initialValue: _selectedFertilizerUnit,
                               decoration: InputDecoration(
                                 labelText: 'Unit',
                                 labelStyle: GoogleFonts.poppins(

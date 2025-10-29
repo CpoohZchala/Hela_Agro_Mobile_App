@@ -8,6 +8,7 @@ class AuthApi {
 
   static Future<http.Response> signUp(User user) async {
     final url = Uri.parse('$baseUrl/signup');
+    
 
     return await http.post(
       url,

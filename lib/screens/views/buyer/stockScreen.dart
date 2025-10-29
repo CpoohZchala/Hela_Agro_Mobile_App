@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'cartScreen.dart';
 
 class OurProductsScreen extends StatefulWidget {
-  const OurProductsScreen({Key? key}) : super(key: key);
+  const OurProductsScreen({super.key});
 
   @override
   _OurProductsScreenState createState() => _OurProductsScreenState();

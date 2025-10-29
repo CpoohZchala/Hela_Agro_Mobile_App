@@ -9,7 +9,7 @@ class CartApi {
     'Content-Type': 'application/json',
   };
 
-  static final FlutterSecureStorage storage = FlutterSecureStorage();
+  static const FlutterSecureStorage storage = FlutterSecureStorage();
 
   // Get token from secure storage
   static Future<String?> _getToken() async {

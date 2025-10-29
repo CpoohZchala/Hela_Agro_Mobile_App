@@ -7,8 +7,7 @@ import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 class TechnicalInquiryList extends StatefulWidget {
   final String baseUrl;
 
-  const TechnicalInquiryList({Key? key, required this.baseUrl})
-      : super(key: key);
+  const TechnicalInquiryList({super.key, required this.baseUrl});
 
   @override
   _TechnicalInquiryListState createState() => _TechnicalInquiryListState();
@@ -284,11 +283,11 @@ class EditInquiryScreen extends StatefulWidget {
   final VoidCallback onUpdate;
 
   const EditInquiryScreen({
-    Key? key,
+    super.key,
     required this.inquiry,
     required this.api,
     required this.onUpdate,
-  }) : super(key: key);
+  });
 
   @override
   _EditInquiryScreenState createState() => _EditInquiryScreenState();

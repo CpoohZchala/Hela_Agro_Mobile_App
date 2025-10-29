@@ -6,7 +6,7 @@ import 'package:farmeragriapp/api/farmer_api.dart';
 import 'package:farmeragriapp/models/farmer_model.dart';
 
 class CreateFarmerScreen extends StatefulWidget {
-  const CreateFarmerScreen({Key? key}) : super(key: key);
+  const CreateFarmerScreen({super.key});
 
   @override
   State<CreateFarmerScreen> createState() => _CreateFarmerScreenState();
@@ -219,7 +219,7 @@ class _CreateFarmerScreenState extends State<CreateFarmerScreen> {
                         ),
                         const SizedBox(height: 16),
                         DropdownButtonFormField<String>(
-                          value: selectedBranch,
+                          initialValue: selectedBranch,
                           items: branches.map((branch) {
                             return DropdownMenuItem(
                               value: branch,

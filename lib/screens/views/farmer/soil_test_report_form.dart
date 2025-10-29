@@ -217,7 +217,7 @@ class _SoilTestReportFormScreenState extends State<SoilTestReportFormScreen> {
                             Icons.bubble_chart),
                         const SizedBox(height: 16),
                         DropdownButtonFormField<String>(
-                          value: _soilTexture,
+                          initialValue: _soilTexture,
                           decoration: InputDecoration(
                             labelText: 'soil_texture'.tr(),
                             prefixIcon: const Icon(Icons.terrain,

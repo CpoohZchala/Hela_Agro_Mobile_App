@@ -297,9 +297,10 @@ class _SoilTestScreenState extends State<SoilTestScreen> {
                                                                     key:
                                                                         "userId");
                                                             if (farmerId !=
-                                                                null)
+                                                                null) {
                                                               await _fetchReports(
                                                                   farmerId);
+                                                            }
                                                           }
                                                         },
                                                       ),
@@ -355,9 +356,10 @@ class _SoilTestScreenState extends State<SoilTestScreen> {
                                                                           key:
                                                                               "userId");
                                                               if (farmerId !=
-                                                                  null)
+                                                                  null) {
                                                                 await _fetchReports(
                                                                     farmerId);
+                                                              }
                                                               ScaffoldMessenger
                                                                       .of(context)
                                                                   .showSnackBar(
@@ -673,7 +675,6 @@ class _SoilTestScreenState extends State<SoilTestScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFF57A45B),
-        child: const Icon(Icons.add, color: Colors.white),
         onPressed: () async {
           final result = await Navigator.push(
             context,
@@ -689,6 +690,7 @@ class _SoilTestScreenState extends State<SoilTestScreen> {
           }
         },
         tooltip: 'Add Soil Test Report',
+        child: const Icon(Icons.add, color: Colors.white),
       ),
     );
   }

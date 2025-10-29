@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:farmeragriapp/screens/views/farmer/cropCalender.dart';
 import 'package:farmeragriapp/screens/views/farmer/notifications.dart';
 import 'package:farmeragriapp/screens/views/farmer/profile.dart';
@@ -37,8 +36,8 @@ class _FarmerDashboardState extends State<FarmerDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _screens = [
-      FarmerHome(),
+    final List<Widget> screens = [
+      const FarmerHome(),
       const SoilTestScreen(),
       const CropCalenderScreen(),
       ProfileScreen(
@@ -47,7 +46,7 @@ class _FarmerDashboardState extends State<FarmerDashboard> {
       ),
     ];
     return Scaffold(
-      body: _screens[_selectedIndex],
+      body: screens[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           color: Color.fromRGBO(1, 45, 9, 0.8),

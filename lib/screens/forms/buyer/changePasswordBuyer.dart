@@ -9,8 +9,7 @@ class BuyerChangePasswordScreen extends StatefulWidget {
   final String userType;
 
   const BuyerChangePasswordScreen(
-      {required this.userId, required this.userType, Key? key})
-      : super(key: key);
+      {required this.userId, required this.userType, super.key});
 
   @override
   _BuyerChangePasswordScreenState createState() =>
@@ -140,7 +139,7 @@ class _BuyerChangePasswordScreenState extends State<BuyerChangePasswordScreen> {
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: const BorderSide(
-                            color: const Color.fromRGBO(255, 235, 59, 0.8),
+                            color: Color.fromRGBO(255, 235, 59, 0.8),
                             width: 2,
                           ),
                         ),
@@ -180,7 +179,7 @@ class _BuyerChangePasswordScreenState extends State<BuyerChangePasswordScreen> {
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: const BorderSide(
-                            color: const Color.fromRGBO(255, 235, 59, 0.8),
+                            color: Color.fromRGBO(255, 235, 59, 0.8),
                             width: 2,
                           ),
                         ),
@@ -220,7 +219,7 @@ class _BuyerChangePasswordScreenState extends State<BuyerChangePasswordScreen> {
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: const BorderSide(
-                            color: const Color.fromRGBO(255, 235, 59, 0.8),
+                            color: Color.fromRGBO(255, 235, 59, 0.8),
                             width: 2,
                           ),
                         ),

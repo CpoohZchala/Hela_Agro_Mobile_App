@@ -191,7 +191,7 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
                                       addDate, descriptionKey, id, update),
                                 ],
                               );
-                            }).toList(),
+                            }),
                             const SizedBox(height: 20),
                             Image.asset(
                               "assets/images/image5.png",

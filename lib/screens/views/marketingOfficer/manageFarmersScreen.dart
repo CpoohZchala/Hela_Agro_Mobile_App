@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ManageFarmersScreen extends StatefulWidget {
-  const ManageFarmersScreen({Key? key}) : super(key: key);
+  const ManageFarmersScreen({super.key});
 
   @override
   State<ManageFarmersScreen> createState() => _ManageFarmersScreenState();

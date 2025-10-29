@@ -20,7 +20,7 @@ class ArcClipper extends CustomClipper<Path> {
 }
 
 class OrderScreen extends StatefulWidget {
-  const OrderScreen({Key? key}) : super(key: key);
+  const OrderScreen({super.key});
 
   @override
   State<OrderScreen> createState() => _OrderScreenState();

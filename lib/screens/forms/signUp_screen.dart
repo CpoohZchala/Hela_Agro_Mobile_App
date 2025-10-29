@@ -1,11 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:farmeragriapp/api/auth_api.dart';
 import 'package:farmeragriapp/models/user_model.dart';
 import 'package:farmeragriapp/screens/dialogBox/success_dialog.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -138,7 +136,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   top: arcHeight + 12,
                   bottom: 24,
                 ),
-                child: Container(
+                child: SizedBox(
                   width: cardWidth,
                   child: Card(
                     color: Colors.transparent,
@@ -150,7 +148,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         borderRadius: BorderRadius.circular(22),
                         gradient: LinearGradient(
                           colors: [
-                            Color.fromARGB(255, 51, 162, 56).withOpacity(0.80),
+                            const Color.fromARGB(255, 51, 162, 56).withOpacity(0.80),
                             const Color.fromARGB(2, 246, 247, 246)
                                 .withOpacity(0.60),
                           ],
@@ -182,7 +180,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 14),
                               child: DropdownButtonFormField<String>(
-                                value: _selectedCategory,
+                                initialValue: _selectedCategory,
                                 decoration: InputDecoration(
                                   labelText: "Select Category",
                                   labelStyle: GoogleFonts.poppins(

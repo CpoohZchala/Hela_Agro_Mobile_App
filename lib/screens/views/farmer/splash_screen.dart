@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:farmeragriapp/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

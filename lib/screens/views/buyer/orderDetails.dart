@@ -8,10 +8,10 @@ class OrderDetailsScreen extends StatefulWidget {
   final String authToken;
 
   const OrderDetailsScreen({
-    Key? key,
+    super.key,
     required this.orderId,
     required this.authToken,
-  }) : super(key: key);
+  });
 
   @override
   State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();

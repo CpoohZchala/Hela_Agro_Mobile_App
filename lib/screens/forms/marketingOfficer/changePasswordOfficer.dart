@@ -9,8 +9,7 @@ class OfficerChangePasswordScreen extends StatefulWidget {
   final String userType;
 
   const OfficerChangePasswordScreen(
-      {required this.userId, required this.userType, Key? key})
-      : super(key: key);
+      {required this.userId, required this.userType, super.key});
 
   @override
   _OfficerChangePasswordScreenState createState() =>
@@ -143,7 +142,7 @@ class _OfficerChangePasswordScreenState
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: const BorderSide(
-                            color: const Color.fromRGBO(87, 164, 91, 0.8),
+                            color: Color.fromRGBO(87, 164, 91, 0.8),
                             width: 2,
                           ),
                         ),
@@ -183,7 +182,7 @@ class _OfficerChangePasswordScreenState
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: const BorderSide(
-                            color: const Color.fromRGBO(87, 164, 91, 0.8),
+                            color: Color.fromRGBO(87, 164, 91, 0.8),
                             width: 2,
                           ),
                         ),
@@ -223,7 +222,7 @@ class _OfficerChangePasswordScreenState
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: const BorderSide(
-                            color: const Color.fromRGBO(87, 164, 91, 0.8),
+                            color: Color.fromRGBO(87, 164, 91, 0.8),
                             width: 2,
                           ),
                         ),

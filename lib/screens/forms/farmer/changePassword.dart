@@ -8,7 +8,7 @@ class ChangePasswordScreen extends StatefulWidget {
   final String userId;
   final String userType;
 
-  const ChangePasswordScreen({required this.userId, required this.userType});
+  const ChangePasswordScreen({super.key, required this.userId, required this.userType});
 
   @override
   _ChangePasswordScreenState createState() => _ChangePasswordScreenState();

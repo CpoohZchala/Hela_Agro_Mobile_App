@@ -7,7 +7,7 @@ import 'package:flutter_custom_clippers/flutter_custom_clippers.dart'
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class BuyerDashboard extends StatefulWidget {
-  const BuyerDashboard({Key? key}) : super(key: key);
+  const BuyerDashboard({super.key});
 
   @override
   State<BuyerDashboard> createState() => _BuyerDashboardState();
@@ -18,13 +18,13 @@ class _BuyerDashboardState extends State<BuyerDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _screens = [
+    final List<Widget> screens = [
       const BuyerHome(),
       const OrderScreen(),
       Center(child: Text("Profile", style: GoogleFonts.poppins(fontSize: 22))),
     ];
     return Scaffold(
-      body: _screens[_selectedIndex],
+      body: screens[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           color: Color.fromRGBO(18, 40, 18, 0.8),

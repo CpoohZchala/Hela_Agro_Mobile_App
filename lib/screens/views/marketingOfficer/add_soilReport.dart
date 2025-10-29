@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 class UploadSoilTestReportScreen extends StatefulWidget {
   final String farmerId;
 
-  const UploadSoilTestReportScreen({Key? key, required this.farmerId}) : super(key: key);
+  const UploadSoilTestReportScreen({super.key, required this.farmerId});
 
   @override
   State<UploadSoilTestReportScreen> createState() => _UploadSoilTestReportScreenState();

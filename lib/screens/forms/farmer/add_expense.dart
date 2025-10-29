@@ -227,7 +227,7 @@ class _AddExpenseState extends State<AddExpense> {
                     const SizedBox(height: 10),
                     // Dropdown for description (displays Sinhala options)
                     DropdownButtonFormField<String>(
-                      value: _selectedDescription,
+                      initialValue: _selectedDescription,
                       items: _expenseDescriptions
                           .map((desc) => DropdownMenuItem(
                                 value: desc,
@@ -273,10 +273,12 @@ class _AddExpenseState extends State<AddExpense> {
                         ),
                       ),
                       validator: (value) {
-                        if (value == null || value.isEmpty)
+                        if (value == null || value.isEmpty) {
                           return "Please enter an amount";
-                        if (double.tryParse(value) == null)
+                        }
+                        if (double.tryParse(value) == null) {
                           return "Enter a valid number";
+                        }
                         return null;
                       },
                     ),

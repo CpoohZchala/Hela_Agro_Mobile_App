@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -155,7 +154,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   top: arcHeight - 30,
                   bottom: 24,
                 ),
-                child: Container(
+                child: SizedBox(
                   width: cardWidth,
                   child: Card(
                     color: Colors.transparent,
@@ -168,7 +167,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         borderRadius: BorderRadius.circular(22),
                         gradient: LinearGradient(
                           colors: [
-                            Color.fromARGB(255, 51, 162, 56)
+                            const Color.fromARGB(255, 51, 162, 56)
                                 .withOpacity(0.80), // Top color with opacity
                             const Color.fromARGB(2, 246, 247, 246)
                                 .withOpacity(0.60), // Bottom color with opacity
@@ -204,7 +203,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 isDesktop, isTablet),
                             const SizedBox(height: 10),
                             DropdownButtonFormField<String>(
-                              value: _selectedUserType,
+                              initialValue: _selectedUserType,
                               decoration: InputDecoration(
                                 labelText: "Select User Type",
                                 labelStyle: GoogleFonts.poppins(

@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
         "/technical": (context) => const TechnicalIScreen(),
         "/myTechnical": (context) => const TechnicalInquiryList(
             baseUrl: 'http://192.168.8.125:5000/api'),
-        '/buyerDashboard': (context) => BuyerDashboard(),
+        '/buyerDashboard': (context) => const BuyerDashboard(),
         '/buyer_profile': (context) {
           final args = ModalRoute.of(context)!.settings.arguments as Map?;
           return BuyerProfileScreen(
@@ -71,15 +71,15 @@ class MyApp extends StatelessWidget {
           );
         },
         // '/browse_products': (context) => const BrowseProductsScreen(),
-        '/officerDashboard': (context) => OfficerDashboard(
+        '/officerDashboard': (context) => const OfficerDashboard(
               userId: '',
             ),
         '/createFarmer': (context) => const CreateFarmerScreen(),
         "/updateFarmer": (context) => const UpdateFarmerScreen(),
-        "/uploadSoilTestReport": (context) => UploadSoilTestReportScreen(
+        "/uploadSoilTestReport": (context) => const UploadSoilTestReportScreen(
               farmerId: '',
             ),
-        "/manageFarmers": (context) => ManageFarmersScreen(),
+        "/manageFarmers": (context) => const ManageFarmersScreen(),
         "/officerProfile": (context) {
           final args = ModalRoute.of(context)!.settings.arguments as Map?;
           return OfficerProfileScreen(
@@ -88,8 +88,8 @@ class MyApp extends StatelessWidget {
           );
         },
         // "/stock": (context) => const StockListScreen(),
-        "/addHarvest": (context) => AddHarvestScreen(),
-        "/getHarvest": (context) => FarmerStockScreen(),
+        "/addHarvest": (context) => const AddHarvestScreen(),
+        "/getHarvest": (context) => const FarmerStockScreen(),
         "/products": (context) => const OurProductsScreen(),
       },
     );

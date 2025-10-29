@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class FarmerStockScreen extends StatefulWidget {
+  const FarmerStockScreen({super.key});
+
   @override
   _FarmerStockScreenState createState() => _FarmerStockScreenState();
 }

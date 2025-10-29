@@ -6,7 +6,7 @@ import 'package:farmeragriapp/api/farmer_api.dart';
 import 'package:farmeragriapp/models/farmer_model.dart';
 
 class UpdateFarmerScreen extends StatefulWidget {
-  const UpdateFarmerScreen({Key? key}) : super(key: key);
+  const UpdateFarmerScreen({super.key});
 
   @override
   State<UpdateFarmerScreen> createState() => _UpdateFarmerScreenState();

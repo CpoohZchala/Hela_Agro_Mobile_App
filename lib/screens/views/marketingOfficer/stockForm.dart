@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class StockFormScreen extends StatefulWidget {
   final Map<String, dynamic>? existingStock; // Pass data when updating
 
-  const StockFormScreen({Key? key, this.existingStock, required farmerId, required Map<String, dynamic> harvest}) : super(key: key);
+  const StockFormScreen({super.key, this.existingStock, required farmerId, required Map<String, dynamic> harvest});
 
   @override
   _StockFormScreenState createState() => _StockFormScreenState();
@@ -65,7 +65,7 @@ class _StockFormScreenState extends State<StockFormScreen> {
   Future<void> saveStock() async {
     if (selectedFarmer == null || selectedCrop == null || harvestDate == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("⚠️ Please complete all fields")),
+        const SnackBar(content: Text("⚠️ Please complete all fields")),
       );
       return;
     }
@@ -104,7 +104,7 @@ class _StockFormScreenState extends State<StockFormScreen> {
       Navigator.pop(context, true); // return success
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("❌ Failed to save harvest")),
+        const SnackBar(content: Text("❌ Failed to save harvest")),
       );
     }
   }
@@ -130,7 +130,7 @@ class _StockFormScreenState extends State<StockFormScreen> {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       elevation: 4,
-      margin: EdgeInsets.only(bottom: 20),
+      margin: const EdgeInsets.only(bottom: 20),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -141,7 +141,7 @@ class _StockFormScreenState extends State<StockFormScreen> {
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.green.shade800)),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             child,
           ],
         ),
@@ -170,7 +170,7 @@ class _StockFormScreenState extends State<StockFormScreen> {
                 child: Column(
                   children: [
                     DropdownButtonFormField(
-                      value: selectedFarmer,
+                      initialValue: selectedFarmer,
                       decoration: InputDecoration(
                         labelText: "Select Farmer",
                         filled: true,
@@ -190,7 +190,7 @@ class _StockFormScreenState extends State<StockFormScreen> {
                         });
                       },
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     buildTextField(
                         label: "Address", controller: addressController),
                   ],
@@ -203,7 +203,7 @@ class _StockFormScreenState extends State<StockFormScreen> {
                 child: Column(
                   children: [
                     DropdownButtonFormField<String>(
-                      value: selectedCrop,
+                      initialValue: selectedCrop,
                       decoration: InputDecoration(
                         labelText: "Crop Name",
                         filled: true,
@@ -223,21 +223,21 @@ class _StockFormScreenState extends State<StockFormScreen> {
                         });
                       },
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     buildTextField(
                         label: "Total Amount (kg)",
                         controller: totalAmountController,
                         type: TextInputType.number),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     buildTextField(
                         label: "Price per Kg",
                         controller: priceController,
                         type: TextInputType.number),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green.shade700,
-                        minimumSize: Size(double.infinity, 50),
+                        minimumSize: const Size(double.infinity, 50),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)),
                       ),
@@ -252,12 +252,12 @@ class _StockFormScreenState extends State<StockFormScreen> {
                           setState(() => harvestDate = picked);
                         }
                       },
-                      icon: Icon(Icons.calendar_today, color: Colors.white),
+                      icon: const Icon(Icons.calendar_today, color: Colors.white),
                       label: Text(
                         harvestDate == null
                             ? "Select Harvest Date"
                             : harvestDate.toString().split(" ")[0],
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                     ),
                   ],
@@ -268,13 +268,13 @@ class _StockFormScreenState extends State<StockFormScreen> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green.shade700,
-                  minimumSize: Size(double.infinity, 55),
+                  minimumSize: const Size(double.infinity, 55),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14)),
                 ),
                 onPressed: saveStock,
                 child: Text(isUpdating ? "🔄 Update Harvest" : "✅ Add Harvest",
-                    style: TextStyle(fontSize: 16, color: Colors.white)),
+                    style: const TextStyle(fontSize: 16, color: Colors.white)),
               ),
             ],
           ),

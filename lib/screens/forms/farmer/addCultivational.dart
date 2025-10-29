@@ -306,7 +306,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    value: _selectedYieldSize,
+                    initialValue: _selectedYieldSize,
                     onChanged: (val) =>
                         setState(() => _selectedYieldSize = val),
                     items: _yieldSizeOptions.map((String item) {
@@ -376,7 +376,7 @@ class _CultivationalAddScreenState extends State<CultivationalAddScreen> {
           borderRadius: BorderRadius.circular(10),
         ),
       ),
-      value: value,
+      initialValue: value,
       onChanged: enabled ? onChanged : null,
       items: items.map((String item) {
         return DropdownMenuItem<String>(

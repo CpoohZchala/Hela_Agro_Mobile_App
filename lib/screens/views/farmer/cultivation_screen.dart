@@ -193,7 +193,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                     ),
                                   ),
                                 );
-                              }).toList(),
+                              }),
                               const SizedBox(height: 12),
                               ..._data.map((cultivation) {
                                 final id = cultivation['_id'];
@@ -377,8 +377,9 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                                     ),
                                                   ),
                                                 );
-                                                if (result == true)
+                                                if (result == true) {
                                                   _fetchData();
+                                                }
                                               },
                                               icon: const Icon(
                                                 Icons.edit,
@@ -393,7 +394,7 @@ class _CultivationalScreenState extends State<CultivationalScreen> {
                                     ),
                                   ),
                                 );
-                              }).toList(),
+                              }),
                               const SizedBox(height: 10),
                               Image.asset("assets/images/image3.png",
                                   height: 200, width: 200)

@@ -146,7 +146,7 @@ class _OfficerUpdateProfileScreenState extends State<OfficerUpdateProfileScreen>
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: const BorderSide(
-                            color: const Color.fromRGBO(87, 164, 91, 0.8),
+                            color: Color.fromRGBO(87, 164, 91, 0.8),
                             width: 2,
                           ),
                         ),
@@ -159,7 +159,7 @@ class _OfficerUpdateProfileScreenState extends State<OfficerUpdateProfileScreen>
                     ),
                     const SizedBox(height: 20),
                     DropdownButtonFormField<String>(
-                      value: _selectedCategory,
+                      initialValue: _selectedCategory,
                       decoration: InputDecoration(
                         labelText: "User Type",
                         labelStyle: labelStyle,
@@ -171,7 +171,7 @@ class _OfficerUpdateProfileScreenState extends State<OfficerUpdateProfileScreen>
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: const BorderSide(
-                            color: const Color.fromRGBO(87, 164, 91, 0.8),
+                            color: Color.fromRGBO(87, 164, 91, 0.8),
                             width: 2,
                           ),
                         ),
@@ -204,7 +204,7 @@ class _OfficerUpdateProfileScreenState extends State<OfficerUpdateProfileScreen>
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: const BorderSide(
-                            color: const Color.fromRGBO(87, 164, 91, 0.8),
+                            color: Color.fromRGBO(87, 164, 91, 0.8),
                             width: 2,
                           ),
                         ),

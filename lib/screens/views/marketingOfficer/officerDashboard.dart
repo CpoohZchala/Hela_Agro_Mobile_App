@@ -1,9 +1,7 @@
 import 'package:farmeragriapp/screens/views/marketingOfficer/manageFarmersScreen.dart';
 import 'package:farmeragriapp/screens/views/marketingOfficer/officerHome.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class OfficerDashboard extends StatefulWidget {
   final dynamic userId;
@@ -19,14 +17,14 @@ class _OfficerDashboardState extends State<OfficerDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _screens = [
+    final List<Widget> screens = [
       const OfficerHome(),
       const ManageFarmersScreen(),
     ];
      
 
     return Scaffold(
-      body: _screens[_selectedIndex],
+      body: screens[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           color: Color.fromRGBO(4, 16, 0, 0.8),
